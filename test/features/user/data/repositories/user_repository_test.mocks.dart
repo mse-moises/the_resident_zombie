@@ -39,8 +39,8 @@ class MockUserCacheDataSource extends _i1.Mock
               returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
           as _i4.Future<_i2.UserModel>);
   @override
-  _i4.Future<void> cacheNumberTrivia(_i2.UserModel? userToCache) =>
-      (super.noSuchMethod(Invocation.method(#cacheNumberTrivia, [userToCache]),
+  _i4.Future<void> cacheUser(_i2.UserModel? userToCache) =>
+      (super.noSuchMethod(Invocation.method(#cacheUser, [userToCache]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
@@ -75,8 +75,8 @@ class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
   }
 
   @override
-  _i4.Future<bool> get isConnect =>
-      (super.noSuchMethod(Invocation.getter(#isConnect),
+  _i4.Future<bool> get isConnected =>
+      (super.noSuchMethod(Invocation.getter(#isConnected),
           returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
   String toString() => super.toString();
