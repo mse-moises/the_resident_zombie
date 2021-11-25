@@ -1,0 +1,7 @@
+import 'package:dartz/dartz.dart';
+import 'package:the_resident_zombie/core/error/failures.dart';
+import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart';
+
+abstract class UserRepository{
+  Future<Either<Failure,UserEntity>> createUser(String name, double age, String gender);
+}
