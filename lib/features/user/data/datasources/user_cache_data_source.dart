@@ -6,5 +6,5 @@ abstract class UserCacheDataSource{
   /// Throws [CacheException] if no cached data is present.
   Future<UserModel> getUser();
 
-  Future<void> cacheNumberTrivia(UserModel userToCache);
+  Future<void> cacheUser(UserModel userToCache);
 }
