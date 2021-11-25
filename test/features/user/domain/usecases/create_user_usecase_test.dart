@@ -33,7 +33,7 @@ void main(){
         when(mockUserRepository.createUser(any, any, any)).thenAnswer((_) async => Right(tUser));
 
         // act
-        final result = await usecase(name:tName,age:tAge,gender:tGender);
+        final result = await usecase(Params(name: tName, age: tAge, gender: tGender));
 
         // assert
         expect(result,Right(tUser));
