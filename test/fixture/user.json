@@ -1,0 +1,10 @@
+{
+    "location": "http://zssn-backend-example.herokuapp.com/api/people/53b4cfbf-2c67-48eb-a77b-55b81fcd8b03",
+    "name": "Fabio Akita",
+    "age": 30,
+    "gender": "M",
+    "lonlat": "POINT (-46.67105 -23.618437)",
+    "created_at": "2021-11-25T03:00:29.929Z",
+    "updated_at": "2021-11-25T03:00:29.929Z",
+    "infected": false
+}
