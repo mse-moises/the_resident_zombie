@@ -19,7 +19,7 @@ void main(){
       usecase = CreateUserUsecase(mockUserRepository);
     });
 
-    final tName = "teste";
+    final tName = "test";
     final int tAge = 30;
     final tGender = "M";
     
