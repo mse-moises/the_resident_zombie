@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class UserEntity extends Equatable {
   final String name;
-  final String age;
+  final int age;
   final String gender;
 
   UserEntity({required this.name, required this.age, required this.gender});
