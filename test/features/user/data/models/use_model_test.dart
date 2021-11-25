@@ -28,6 +28,24 @@ void main() {
         expect(result, tUserModel);
       }
     );
+
+    test('return a valid JSON from model',
+      () async {
+        // arrange
+          final result = tUserModel.toJson();
+        // act
+          final expectMap = {
+            "name": "Fabio Akita",
+            "age": 30,
+            "gender": "M",
+          };
+        
+        // assert
+
+        expect(result, expectMap);
+      
+      }
+    );
   }
   );
 }
