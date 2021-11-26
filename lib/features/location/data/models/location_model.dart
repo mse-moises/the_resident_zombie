@@ -1,7 +1,7 @@
 import 'package:the_resident_zombie/features/location/domain/entities/location_entity.dart';
 
 class LocationModel extends LocationEntity {
-  LocationModel({required double x, required double y}) : super(x: x, y: y);
+  LocationModel({required double latitude, required double longitude}) : super(latitude: latitude, longitude: longitude);
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
 
@@ -24,20 +24,20 @@ class LocationModel extends LocationEntity {
 
 
     return LocationModel(
-      x: double.parse(finalListString[0]),
-      y: double.parse(finalListString[1]),
+      latitude: double.parse(finalListString[0]),
+      longitude: double.parse(finalListString[1]),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'x': x,
-      'y': y,
+      'x': latitude,
+      'y': longitude,
     };
   }
 
   @override
   String toString(){
-    return 'POINT ($x $y)';
+    return 'POINT ($latitude $longitude)';
   }
 }
