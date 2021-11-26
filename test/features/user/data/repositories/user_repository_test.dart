@@ -56,7 +56,6 @@ void main() {
         await repository.createUser(tName, tAge, tGender);
         // assert
         verify(mockNetworkInfo.isConnected);
-        
       });
 
       test(
@@ -92,7 +91,7 @@ void main() {
           () async {
         // arrange
 
-        when(mockUserRemoteDataSource.createUser(any,any,any))
+        when(mockUserRemoteDataSource.createUser(any, any, any))
             .thenThrow(ServerException());
 
         // act
@@ -104,19 +103,17 @@ void main() {
       });
     });
 
-
     test('return [ServerFailure] when the call the device is offline',
-      () async {
+        () async {
       // arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
 
       // act
       final result = await repository.createUser(tName, tAge, tGender);
-      
+
       // assert
       expect(result, equals(Left(ServerFailure())));
       verifyZeroInteractions(mockUserRemoteDataSource);
-      }
-    );
+    });
   });
 }
