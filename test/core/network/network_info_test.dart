@@ -25,7 +25,7 @@ void main() {
 
       when(mockInternetConnectionChecker.hasConnection)
           .thenAnswer((_) async => tHasConnectionFuture);
-      //act
+      //act{git add}
 
       final result = networkInfo.isConnected;
       //assert
