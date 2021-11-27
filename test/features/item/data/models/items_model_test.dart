@@ -15,4 +15,16 @@ void main() {
       expect(itemModel, isA<ItemEntity>());
     },
   );
+
+  final tJson = {"name": "Fiji Water", "points": 14};
+
+  test(
+    'should create a [ItemModel] from json',
+    () async {
+      // act
+      final tItemModel = ItemModel.fromJson(tJson);
+      // assert
+      expect(itemModel, isA<ItemModel>());
+    },
+  );
 }
