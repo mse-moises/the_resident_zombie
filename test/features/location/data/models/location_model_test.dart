@@ -8,7 +8,7 @@ import 'package:the_resident_zombie/features/location/domain/entities/location_e
 import '../../../../fixture/fixture_reader.dart';
 
 void main() {
-  final tLocationModel = LocationModel(x: 0, y: 0);
+  final tLocationModel = LocationModel(latitude: 0, longitude: 0);
 
   test(
     'locationModel should be a subclass of LocationEntity',
