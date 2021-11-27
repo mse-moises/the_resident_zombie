@@ -2,17 +2,24 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:the_resident_zombie/core/error/failures.dart';
 import 'package:the_resident_zombie/core/usecases/usecase.dart';
+import 'package:the_resident_zombie/features/location/domain/usecases/get_location_usecase.dart';
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart';
 import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart';
 
 class CreateUserUsecase implements UseCase<UserEntity, Params> {
   final UserRepository repository;
+  final GetLocationUseCase getLocationUsecase;
 
-  CreateUserUsecase(this.repository);
+  CreateUserUsecase(
+      {required this.repository, required this.getLocationUsecase});
 
-  Future<Either<Failure, UserEntity>> call(
-      Params params) async {
-    return await repository.createUser(params.name, params.age, params.gender);
+  Future<Either<Failure, UserEntity>> call(Params params) async {
+    
+    final locationEntity = await getLocationUsecase(NoParams());
+
+    if(locationEntity.isLeft()) return Left(DeviceFailure());
+    
+    return await repository.createUser(params.name, params.age, params.gender, locationEntity.toString());
   }
 }
 
