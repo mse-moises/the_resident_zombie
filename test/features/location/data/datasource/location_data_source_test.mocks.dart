@@ -6,8 +6,7 @@ import 'dart:async' as _i4;
 
 import 'package:geolocator/geolocator.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:the_resident_zombie/core/platform/localization_info.dart'
-    as _i3;
+import 'package:the_resident_zombie/core/platform/location_info.dart' as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
