@@ -1,27 +1,25 @@
 import 'package:the_resident_zombie/features/location/domain/entities/location_entity.dart';
 
 class LocationModel extends LocationEntity {
-  LocationModel({required double latitude, required double longitude}) : super(latitude: latitude, longitude: longitude);
+  LocationModel({required double latitude, required double longitude})
+      : super(latitude: latitude, longitude: longitude);
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
-
-    
     return LocationModel.fromString(json['lonlat']);
   }
   factory LocationModel.fromString(String string) {
-    List<String> stringSplited =  string.split(' ');
+    List<String> stringSplited = string.split(' ');
     stringSplited.removeAt(0);
 
     String auxString = "";
-    for(String stringSplit in stringSplited) {
-      stringSplit = stringSplit.replaceAll('(','');
-      stringSplit = stringSplit.replaceAll(')','');
+    for (String stringSplit in stringSplited) {
+      stringSplit = stringSplit.replaceAll('(', '');
+      stringSplit = stringSplit.replaceAll(')', '');
 
-      auxString+='$stringSplit ';
+      auxString += '$stringSplit ';
     }
 
-    var finalListString =  auxString.split(' ');
-
+    var finalListString = auxString.split(' ');
 
     return LocationModel(
       latitude: double.parse(finalListString[0]),
@@ -36,8 +34,4 @@ class LocationModel extends LocationEntity {
     };
   }
 
-  @override
-  String toString(){
-    return 'POINT ($latitude $longitude)';
-  }
 }
