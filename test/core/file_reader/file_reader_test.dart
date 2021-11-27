@@ -4,17 +4,27 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:the_resident_zombie/core/platform/file_getter.dart';
 
 void main() {
+  late FileGetter fileGetter;
+
+  setUp(() {
+    fileGetter = FileGetterImpl();
+  });
 
   final tName = "items.json";
-  final tResult = [{ "name": "Fiji Water", "points": 14 }, { "name": "Campbell Soup", "points": 12 }, { "name": "First Aid Pouch", "points": 10 }, { "name": "AK47", "points": 8 }];
+  final tResult = [
+    {"name": "Fiji Water", "points": 14},
+    {"name": "Campbell Soup", "points": 12},
+    {"name": "First Aid Pouch", "points": 10},
+    {"name": "AK47", "points": 8}
+  ];
   test(
     'getFile gets a items file',
     () async {
       // act
-      final result = json.decode(getFile(tName));
+      final result = json.decode(await fileGetter.getFile(tName));
 
       // assert
-      expect(result,tResult);
+      expect(result, tResult);
     },
   );
 }
