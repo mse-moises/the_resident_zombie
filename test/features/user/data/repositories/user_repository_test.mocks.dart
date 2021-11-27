@@ -58,8 +58,9 @@ class MockUserRemoteDataSource extends _i1.Mock
 
   @override
   _i4.Future<_i2.UserModel> createUser(
-          String? name, int? age, String? gender) =>
-      (super.noSuchMethod(Invocation.method(#createUser, [name, age, gender]),
+          String? name, int? age, String? gender, String? location) =>
+      (super.noSuchMethod(
+              Invocation.method(#createUser, [name, age, gender, location]),
               returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
           as _i4.Future<_i2.UserModel>);
   @override

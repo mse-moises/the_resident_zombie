@@ -38,6 +38,7 @@ void main() {
     final tName = "teste";
     final int tAge = 1;
     final tGender = "teste";
+    final tPositionString = "POINT (-46.67105 -23.618437)";
 
     final tUserModel = UserModel(name: tName, age: tAge, gender: tGender);
 
@@ -50,10 +51,10 @@ void main() {
 
       test('check if the device is online', () async {
         // arrange
-        when(mockUserRemoteDataSource.createUser(any, any, any))
+        when(mockUserRemoteDataSource.createUser(any, any, any, any))
             .thenAnswer((_) async => tUserModel);
         // act
-        await repository.createUser(tName, tAge, tGender);
+        await repository.createUser(tName, tAge, tGender, tPositionString);
         // assert
         verify(mockNetworkInfo.isConnected);
       });
@@ -62,13 +63,13 @@ void main() {
           'return remote data when the call to remote data source is successful',
           () async {
         // arrange
-        when(mockUserRemoteDataSource.createUser(any, any, any))
+        when(mockUserRemoteDataSource.createUser(any, any, any, any))
             .thenAnswer((_) async => tUserModel);
         // act
-        final result = await repository.createUser(tName, tAge, tGender);
+        final result = await repository.createUser(tName, tAge, tGender, tPositionString);
         // assert
 
-        verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender));
+        verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender, any));
         expect(result, equals(Right(tUserEntity)));
       });
 
@@ -76,13 +77,13 @@ void main() {
           'cache the data locally when the call to remote data source is successful',
           () async {
         // arrange
-        when(mockUserRemoteDataSource.createUser(any, any, any))
+        when(mockUserRemoteDataSource.createUser(any, any, any, any))
             .thenAnswer((_) async => tUserModel);
         // act
-        await repository.createUser(tName, tAge, tGender);
+        await repository.createUser(tName, tAge, tGender, tPositionString);
         // assert
 
-        verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender));
+        verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender, tPositionString));
         verify(mockUserCacheDataSource.cacheUser(tUserModel));
       });
 
@@ -91,14 +92,14 @@ void main() {
           () async {
         // arrange
 
-        when(mockUserRemoteDataSource.createUser(any, any, any))
+        when(mockUserRemoteDataSource.createUser(any, any, any, any))
             .thenThrow(ServerException());
 
         // act
-        final result = await repository.createUser(tName, tAge, tGender);
+        final result = await repository.createUser(tName, tAge, tGender, tPositionString);
         // assert
 
-        verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender));
+        verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender, tPositionString));
         expect(result, equals(Left(ServerFailure())));
       });
     });
@@ -109,7 +110,7 @@ void main() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
 
       // act
-      final result = await repository.createUser(tName, tAge, tGender);
+      final result = await repository.createUser(tName, tAge, tGender, tPositionString);
 
       // assert
       expect(result, equals(Left(ServerFailure())));
