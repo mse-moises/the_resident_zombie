@@ -1,6 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:the_resident_zombie/core/error/exceptions.dart';
-import 'package:the_resident_zombie/core/platform/localization_info.dart';
+import 'package:the_resident_zombie/core/platform/location_info.dart';
 import 'package:the_resident_zombie/features/location/data/models/location_model.dart';
 
 abstract class LocationDataSource {
