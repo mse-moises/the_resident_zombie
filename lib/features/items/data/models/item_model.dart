@@ -8,4 +8,11 @@ class ItemModel extends ItemEntity {
           name: name,
           value: value,
         );
+
+  factory ItemModel.fromJson(Map<String, dynamic> map) {
+    return ItemModel(
+      name: map['name'],
+      value: map['points'],
+    );
+  }
 }
