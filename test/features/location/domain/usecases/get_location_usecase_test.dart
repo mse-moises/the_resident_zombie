@@ -19,7 +19,7 @@ void main() {
     usecase = GetLocationUseCase(mockLocationRepository);
   });
 
-  final tLocation = LocationEntity(x: 0, y: 0);
+  final tLocation = LocationEntity(latitude: 0, longitude: 0);
 
   test(
     'return a LocationEntity when requested is successful',
