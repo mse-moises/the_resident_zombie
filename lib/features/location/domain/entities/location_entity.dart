@@ -9,8 +9,8 @@ class LocationEntity extends Equatable {
   @override
   List<Object> get props => [latitude,longitude];
 
-  @override
-  String toString(){
+  
+  String toStringAsCoordinated(){
     return "POINT ($latitude $longitude)";
   }
 }
