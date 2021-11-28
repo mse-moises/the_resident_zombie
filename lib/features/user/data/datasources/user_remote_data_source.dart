@@ -10,7 +10,11 @@ abstract class UserRemoteDataSource {
   ///
   ///Throws a [ServerException] for all error codes.
   Future<UserModel> createUser(String name, int age, String gender, String location, String items);
+  Future<UserModel> updateUserLocation(String id, String location);
 }
+
+const String BASE_URL = "http://zssn-backend-example.herokuapp.com/api/";
+
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   final http.Client client;
@@ -29,7 +33,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     };
 
     final response = await client.post(
-      Uri.parse('http://zssn-backend-example.herokuapp.com/api/people.json'),
+      Uri.parse('${BASE_URL}people.json'),
       headers: {'Content-Type': 'application/json'},
       body:body,
     );
@@ -39,5 +43,27 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     } else {
       throw ServerException();
     }
+  }
+
+  @override
+  Future<UserModel> updateUserLocation(String id, String location) async {
+    final body = {
+      "person":{
+        "lonlat": location,
+      }
+    };
+
+    final response = await client.patch(
+      Uri.parse('${BASE_URL}people/$id.json'),
+      headers: {'Content-Type': 'application/json'},
+      body:body,
+    );
+
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
+
   }
 }
