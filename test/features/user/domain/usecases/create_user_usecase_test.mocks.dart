@@ -56,6 +56,19 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
               _FakeEither_0<_i5.Failure, _i6.UserEntity>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.UserEntity>>);
   @override
+  _i4.Future<_i2.Either<_i5.Failure, String>> saveContact(String? id) =>
+      (super.noSuchMethod(Invocation.method(#saveContact, [id]),
+              returnValue: Future<_i2.Either<_i5.Failure, String>>.value(
+                  _FakeEither_0<_i5.Failure, String>()))
+          as _i4.Future<_i2.Either<_i5.Failure, String>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i6.UserEntity>> getUserEntityById(
+          String? id) =>
+      (super.noSuchMethod(Invocation.method(#getUserEntityById, [id]),
+          returnValue: Future<_i2.Either<_i5.Failure, _i6.UserEntity>>.value(
+              _FakeEither_0<_i5.Failure, _i6.UserEntity>())) as _i4
+          .Future<_i2.Either<_i5.Failure, _i6.UserEntity>>);
+  @override
   String toString() => super.toString();
 }
 
