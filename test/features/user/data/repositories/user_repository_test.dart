@@ -135,16 +135,16 @@ void main() {
         final tIdentifier = "test";
         final tPosition = "test";
         test(
-          'return bool if the resquest is successful',
+          'return UserModel if the resquest is successful',
           () async {
             // arrange
             when(mockUserRemoteDataSource.updateUserLocation(any, any))
-                .thenAnswer((realInvocation) async => true);
+                .thenAnswer((realInvocation) async => tUserModel);
             // act
             final result =
                 await repository.updateUserLocation(tIdentifier, tPosition);
             // assert
-            expect(result, equals(Right(true)));
+            expect(result, equals(Right(tUserModel)));
           },
         );
         test(
