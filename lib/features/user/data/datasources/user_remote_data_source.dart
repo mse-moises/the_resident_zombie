@@ -11,6 +11,7 @@ abstract class UserRemoteDataSource {
   ///Throws a [ServerException] for all error codes.
   Future<UserModel> createUser(String name, int age, String gender, String location, String items);
   Future<UserModel> updateUserLocation(String id, String location);
+  Future<UserModel> getUserEntityById(String id);
 }
 
 const String BASE_URL = "http://zssn-backend-example.herokuapp.com/api/";
@@ -64,6 +65,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     } else {
       throw ServerException();
     }
+  }
 
+  @override
+  Future<UserModel> getUserEntityById(String id) async {
+
+    final response = await client.get(
+      Uri.parse('${BASE_URL}people/$id.json'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
   }
 }
