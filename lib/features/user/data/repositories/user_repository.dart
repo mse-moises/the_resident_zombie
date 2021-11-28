@@ -29,8 +29,8 @@ class UserRepositoryImpl implements UserRepository {
     if (!await networkInfo.isConnected) return Left(ServerFailure());
 
     try {
-      final remoteAddress = await remoteDataSource.createUser(
-          name, age, gender, location, items);
+      final remoteAddress =
+          await remoteDataSource.createUser(name, age, gender, location, items);
 
       cacheDataSource.cacheUser(remoteAddress);
       return Right(remoteAddress);
@@ -40,23 +40,18 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> updateUserLocation(String id, String location) async {
+  Future<Either<Failure, UserEntity>> updateUserLocation(
+      String id, String location) async {
     if (!await networkInfo.isConnected) return Left(ServerFailure());
 
     try {
-      final result = await remoteDataSource.updateUserLocation(id,location);
+      final result = await remoteDataSource.updateUserLocation(id, location);
 
       return Right(result);
     } on ServerException {
       return Left(ServerFailure());
     }
   }
-
-  // @override
-  // Future<Either<Failure, bool>> makeAContact(String id) {
-  //   // TODO: implement makeAContact
-  //   throw UnimplementedError();
-  // }
 
   @override
   Future<Either<Failure, UserEntity>> getUserEntityById(String id) async {
@@ -71,6 +66,14 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 
-  
+  @override
+  Future<Either<Failure, String>> saveContact(String id) async {
+    try {
+      final result = await cacheDataSource.saveContact(id);
 
+      return Right(result);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
 }
