@@ -65,6 +65,10 @@ class MockUserRemoteDataSource extends _i1.Mock
               Future<_i2.UserModel>.value(_FakeUserModel_0())) as _i4
           .Future<_i2.UserModel>);
   @override
+  _i4.Future<bool> updateUserLocation(String? id, String? location) => (super
+      .noSuchMethod(Invocation.method(#updateUserLocation, [id, location]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
   String toString() => super.toString();
 }
 
