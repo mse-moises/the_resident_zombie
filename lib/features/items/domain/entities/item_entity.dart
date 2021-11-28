@@ -8,4 +8,8 @@ class ItemEntity extends Equatable{
 
   @override
   List<Object> get props => [name,value];
+
+  ItemEntity clone(){
+    return ItemEntity(name:name, value:value);
+  }
 }
