@@ -217,13 +217,13 @@ void main() {
     group(
       'Save contact -',
       () {
-
         final tIdentifier = 'test';
         test(
           'return a String if the request was successful',
           () async {
             // arrange
-            when(mockUserCacheDataSource.saveContact(any)).thenAnswer((realInvocation) async => tIdentifier);
+            when(mockUserCacheDataSource.saveContact(any))
+                .thenAnswer((realInvocation) async => tIdentifier);
             // act
             final result = await repository.saveContact(tIdentifier);
             // assert
@@ -235,11 +235,46 @@ void main() {
           'return a [CacheFailure] if the request wasnt successful',
           () async {
             // arrange
-            when(mockUserCacheDataSource.saveContact(any)).thenThrow(CacheException());
+            when(mockUserCacheDataSource.saveContact(any))
+                .thenThrow(CacheException());
             // act
             final result = await repository.saveContact(tIdentifier);
             // assert
             expect(result, equals(Left(CacheFailure())));
+          },
+        );
+      },
+    );
+
+    group(
+      'Get all conacts Id -',
+      () {
+        final tIds = <String>['test', 'test'];
+        test(
+          'return a [List<String>] when the request was successful',
+          () async {
+            // arrange
+            when(mockUserCacheDataSource.getAllContactsIds())
+                .thenAnswer((_) async => tIds);
+            // act
+            final result = await repository.getAllContactsIds();
+
+            // assert
+            expect(result, Right(tIds));
+          },
+        );
+
+        test(
+          'return a [CacheFailure] when the request wasnt successful',
+          () async {
+            // arrange
+            when(mockUserCacheDataSource.getAllContactsIds())
+                .thenThrow(CacheException());
+            // act
+            final result = await repository.getAllContactsIds();
+
+            // assert
+            expect(result, Left(CacheFailure()));
           },
         );
       },

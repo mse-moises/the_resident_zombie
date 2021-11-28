@@ -48,6 +48,11 @@ class MockUserCacheDataSource extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#saveContact, [id]),
           returnValue: Future<String>.value('')) as _i4.Future<String>);
   @override
+  _i4.Future<List<String>> getAllContactsIds() =>
+      (super.noSuchMethod(Invocation.method(#getAllContactsIds, []),
+              returnValue: Future<List<String>>.value(<String>[]))
+          as _i4.Future<List<String>>);
+  @override
   String toString() => super.toString();
 }
 
