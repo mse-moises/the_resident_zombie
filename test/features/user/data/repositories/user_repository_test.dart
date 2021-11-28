@@ -34,6 +34,14 @@ void main() {
     );
   });
 
+  void mockNetworkInfoSuccess() {
+    when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+  }
+
+  void mockNetworkInfoFail() {
+    when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+  }
+
   group('User repository test:', () {
     final tName = "teste";
     final int tAge = 1;
@@ -47,7 +55,7 @@ void main() {
 
     group('device is online', () {
       setUp(() {
-        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        mockNetworkInfoSuccess();
       });
 
       test('check if the device is online', () async {
@@ -112,28 +120,35 @@ void main() {
       });
     });
 
-    test('return [ServerFailure] when the call the device is offline',
-        () async {
-      // arrange
-      when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+    group(
+      'Network info isConnected false',
+      () {
+        test('return [ServerFailure] when the call the device is offline',
+            () async {
+          // arrange
+          mockNetworkInfoFail();
 
-      // act
-      final result = await repository.createUser(
-          tName, tAge, tGender, tPositionString, tItems);
+          // act
+          final result = await repository.createUser(
+              tName, tAge, tGender, tPositionString, tItems);
 
-      // assert
-      expect(result, equals(Left(ServerFailure())));
-      verifyZeroInteractions(mockUserRemoteDataSource);
-    });
+          // assert
+          expect(result, equals(Left(ServerFailure())));
+          verifyZeroInteractions(mockUserRemoteDataSource);
+        });
+      },
+    );
 
     group(
       'Update location -',
       () {
         setUp(() {
-          when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+          mockNetworkInfoSuccess();
         });
+
         final tIdentifier = "test";
         final tPosition = "test";
+
         test(
           'return UserModel if the resquest is successful',
           () async {
@@ -156,6 +171,42 @@ void main() {
             // act
             final result =
                 await repository.updateUserLocation(tIdentifier, tPosition);
+            // assert
+            expect(result, equals(Left(ServerFailure())));
+          },
+        );
+      },
+    );
+
+    group(
+      'Get user by identifier -',
+      () {
+        setUp(() {
+          mockNetworkInfoSuccess();
+        });
+        final id = 'test';
+        test(
+          'return [UserModel] if the resquest is successful',
+          () async {
+            // arrange
+            when(mockUserRemoteDataSource.getUserEntityById(any))
+                .thenAnswer((_) async => tUserModel);
+
+            // act
+            final result = await repository.getUserEntityById(id);
+
+            // assert
+            expect(result, equals(Right(tUserModel)));
+          },
+        );
+        test(
+          'return [ServerFailure] if the resquest is unsuccessful',
+          () async {
+            // arrange
+            when(mockUserRemoteDataSource.getUserEntityById(any))
+                .thenThrow(ServerException());
+            // act
+            final result = await repository.getUserEntityById(id);
             // assert
             expect(result, equals(Left(ServerFailure())));
           },
