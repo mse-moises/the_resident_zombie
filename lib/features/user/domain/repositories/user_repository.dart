@@ -6,4 +6,8 @@ abstract class UserRepository{
   Future<Either<Failure,UserEntity>> createUser(String name, int age, String gender, String location, String items);
 
   Future<Either<Failure,UserEntity>> updateUserLocation(String id, String location);
+
+  //Future<Either<Failure,bool>> makeAContact(String id);
+
+  Future<Either<Failure,UserEntity>> getUserEntityById(String id);
 }
