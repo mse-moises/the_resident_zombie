@@ -38,4 +38,20 @@ class UserRepositoryImpl implements UserRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> updateUserLocation(String id, String location) async {
+    if (!await networkInfo.isConnected) return Left(ServerFailure());
+
+    try {
+      final result = await remoteDataSource.updateUserLocation(id,location);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  
+
 }
