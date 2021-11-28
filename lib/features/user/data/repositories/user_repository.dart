@@ -40,7 +40,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> updateUserLocation(String id, String location) async {
+  Future<Either<Failure, UserEntity>> updateUserLocation(String id, String location) async {
     if (!await networkInfo.isConnected) return Left(ServerFailure());
 
     try {
