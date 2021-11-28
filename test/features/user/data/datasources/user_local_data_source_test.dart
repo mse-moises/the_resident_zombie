@@ -87,8 +87,8 @@ void main() {
               final result = await datasource.saveContact(tIdentifier);
               // assert
               verify(mockSharedPreferences.getString(CACHED_CONTACT));
-              verify(
-                  mockSharedPreferences.setString(CACHED_CONTACT, "$tIdentifier;$tIdentifier"));
+              verify(mockSharedPreferences.setString(
+                  CACHED_CONTACT, "$tIdentifier;$tIdentifier"));
               expect(result, equals(tIdentifier));
             },
           );
@@ -112,13 +112,58 @@ void main() {
             'throw a [CacheException] if the sharedPreferences thows an error on get',
             () async {
               // arrange
-              when(mockSharedPreferences.getString(any)).thenThrow(CacheException());
+              when(mockSharedPreferences.getString(any))
+                  .thenThrow(CacheException());
               when(mockSharedPreferences.setString(any, any))
                   .thenThrow(CacheException());
               // act
               final call = () => datasource.saveContact(tIdentifier);
               // assert
 
+              expect(() => call(), throwsA(TypeMatcher<CacheException>()));
+            },
+          );
+        },
+      );
+      group(
+        'Get all connections id:',
+        () {
+          final tTest = "test;test;test";
+          final tResult = ["test", "test", "test"];
+          test(
+            'return a list of arrays',
+            () async {
+              // arrange
+              when(mockSharedPreferences.getString(any)).thenReturn(tTest);
+              // act
+              final result = await datasource.getAllContactsIds();
+              // assert
+              expect(result, tResult);
+              expect(result.length, 3);
+            },
+          );
+
+          test(
+            'return a empty list when the shared preferences return null',
+            () async {
+              // arrange
+              when(mockSharedPreferences.getString(any)).thenReturn(null);
+              // act
+              final result = await datasource.getAllContactsIds();
+              // assert
+              expect(result, []);
+              expect(result.length, 0);
+            },
+          );
+
+          test(
+            'throws a [CacheException]',
+            () async {
+              // arrange
+              when(mockSharedPreferences.getString(any)).thenThrow(CacheException());
+              // act
+              final call = datasource.getAllContactsIds;
+              // assert
               expect(() => call(), throwsA(TypeMatcher<CacheException>()));
             },
           );
