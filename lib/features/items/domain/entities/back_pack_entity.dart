@@ -12,8 +12,8 @@ class BackPackEntity extends Equatable {
     items.add(itemEntity);
   }
 
-  @override
-  String toString() {
+  
+  String inventoryToString() {
     List<ItemEntity> allEntities = []..addAll(items);
 
     List<List<ItemEntity>> allSameEntities = [];
