@@ -54,12 +54,12 @@ void main() {
   final UserEntity tUser = UserEntity(name: tName, age: tAge, gender: tGender);
 
   void mockSuccessCreateUser() {
-    when(mockUserRepository.createUser(any, any, any, any))
+    when(mockUserRepository.createUser(any, any, any, any, any))
         .thenAnswer((_) async => Right(tUser));
   }
 
   void mockFailCreateUser() {
-    when(mockUserRepository.createUser(any, any, any, any))
+    when(mockUserRepository.createUser(any, any, any, any, any))
         .thenAnswer((_) async => Left(ServerFailure()));
   }
 
@@ -161,7 +161,6 @@ void main() {
       test(
         'get a [Failure] for the UserRepository when the request to create a user fails',
         () async {
-
           // arrange
           mockFailCreateUser();
           mockSuccessLocation();

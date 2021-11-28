@@ -42,6 +42,7 @@ void main() {
       final tAge = 30;
       final tGender = "M";
       final tPositionString = "POINT (-46.67105 -23.618437)";
+      final tItems = "Fiji Water:10;Campbell Soup:5";
 
       final tUserModel = UserModel.fromJson(json.decode(fixture('user.json')));
 
@@ -51,7 +52,7 @@ void main() {
           // arrange
           setUpMockHttpClient200();
           // act
-          final result = await datasource.createUser(tName, tAge, tGender, tPositionString);
+          final result = await datasource.createUser(tName, tAge, tGender, tPositionString,tItems);
           // assert
           expect(result, equals(tUserModel));
         },
@@ -65,7 +66,7 @@ void main() {
           // act
           final call = datasource.createUser;
           // assert
-          expect(()=> call(tName, tAge, tGender, tPositionString), throwsA(TypeMatcher<ServerException>()));
+          expect(()=> call(tName, tAge, tGender, tPositionString,tItems), throwsA(TypeMatcher<ServerException>()));
         },
       );
     },
