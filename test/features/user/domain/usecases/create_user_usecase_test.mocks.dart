@@ -48,13 +48,13 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
               _FakeEither_0<_i5.Failure, _i6.UserEntity>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.UserEntity>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, bool>> updateUserLocation(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.UserEntity>> updateUserLocation(
           String? id, String? location) =>
       (super.noSuchMethod(
-              Invocation.method(#updateUserLocation, [id, location]),
-              returnValue: Future<_i2.Either<_i5.Failure, bool>>.value(
-                  _FakeEither_0<_i5.Failure, bool>()))
-          as _i4.Future<_i2.Either<_i5.Failure, bool>>);
+          Invocation.method(#updateUserLocation, [id, location]),
+          returnValue: Future<_i2.Either<_i5.Failure, _i6.UserEntity>>.value(
+              _FakeEither_0<_i5.Failure, _i6.UserEntity>())) as _i4
+          .Future<_i2.Either<_i5.Failure, _i6.UserEntity>>);
   @override
   String toString() => super.toString();
 }

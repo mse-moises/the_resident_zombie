@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:the_resident_zombie/core/error/failures.dart';
 import 'package:the_resident_zombie/features/location/domain/entities/location_entity.dart';
 import 'package:the_resident_zombie/features/location/domain/usecases/get_location_usecase.dart';
+import 'package:the_resident_zombie/features/user/data/models/user_model.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/update_user_location_usecase.dart';
 
 import 'create_user_usecase_test.mocks.dart';
@@ -26,11 +27,12 @@ void main() {
 
   final tIdentifier = 'test';
   final tLocation = LocationEntity(latitude: 0, longitude: 0);
+  final tUserModel = UserModel(age: 30, gender: 'test', name: 'test');
 
   void setSuccessUserRepository() {
-    bool res = true;
+    
     when(mockUserRepository.updateUserLocation(any, any))
-        .thenAnswer((_) => Future.value(Right(res)));
+        .thenAnswer((_) => Future.value(Right(tUserModel)));
   }
 
   void setFailUserRepository() {
@@ -52,7 +54,7 @@ void main() {
     'Update user location:',
     () {
       test(
-        'return a bool if the request is successful',
+        'return a UserModel if the request is successful',
         () async {
           // arrange
           setSuccessLocationRepository();
@@ -63,7 +65,7 @@ void main() {
               ParamsUpdateLocation(identifier: tIdentifier));
 
           // assert
-          expect(result, Right(true));
+          expect(result, Right(tUserModel));
         },
       );
 
