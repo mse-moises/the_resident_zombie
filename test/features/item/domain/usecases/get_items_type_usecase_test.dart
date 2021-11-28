@@ -42,7 +42,7 @@ void main() {
       // arrange
       when(repository.getItemsType()).thenAnswer((_) async => Right(listItems));
       // act
-      final result = await usecase(NoParams());
+      final result = await usecase(NoParamsGetItemType());
       // assert
       expect(result, equals(Right(listItems)));
     },
@@ -55,7 +55,7 @@ void main() {
       when(repository.getItemsType())
           .thenAnswer((_) async => Left(DeviceFailure()));
       // act
-      final result = await usecase(NoParams());
+      final result = await usecase(NoParamsGetItemType());
       // assert
       expect(result, equals(Left(DeviceFailure())));
     },

@@ -31,7 +31,7 @@ void main() {
           when(mockLocationRepository.getCurrentLocation())
               .thenAnswer((_) async => Right(tLocation));
           // act
-          final result = await usecase(NoParams());
+          final result = await usecase(NoParamsGetLocation());
           // assert
           expect(result, equals(Right(tLocation)));
           verify(mockLocationRepository.getCurrentLocation());
@@ -45,7 +45,7 @@ void main() {
           when(mockLocationRepository.getCurrentLocation())
               .thenAnswer((_) async => Left(DeviceFailure()));
           // act
-          final result = await usecase(NoParams());
+          final result = await usecase(NoParamsGetLocation());
           // assert
           expect(result, equals(Left(DeviceFailure())));
         },
