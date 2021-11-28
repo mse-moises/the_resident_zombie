@@ -17,7 +17,7 @@ void main() {
         'should return a valid String from toString of a [LocationEntity]',
         () async {
           // act
-          final result = tLocationEntity.toStringAsCordinated();
+          final result = tLocationEntity.toStringAsCoordinated();
           // assert
           expect(result, equals(tString));
         },
