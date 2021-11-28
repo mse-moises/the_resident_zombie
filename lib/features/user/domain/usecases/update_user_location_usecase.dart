@@ -29,5 +29,5 @@ class ParamsUpdateLocation extends Equatable {
 
   ParamsUpdateLocation({required this.identifier});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [identifier];
 }

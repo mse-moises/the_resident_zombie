@@ -76,4 +76,10 @@ class UserRepositoryImpl implements UserRepository {
       return Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<String>>> getAllContactsIds() {
+    // TODO: implement getAllContactsIds
+    throw UnimplementedError();
+  }
 }

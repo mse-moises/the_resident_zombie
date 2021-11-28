@@ -10,4 +10,6 @@ abstract class UserRepository{
   Future<Either<Failure,String>> saveContact(String id);
 
   Future<Either<Failure,UserEntity>> getUserEntityById(String id);
+
+  Future<Either<Failure,List<String>>> getAllContactsIds();
 }
