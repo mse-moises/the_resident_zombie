@@ -56,7 +56,7 @@ void main() {
   final tParams = ParamsBackpack(tQuantities);
 
   group(
-    'get backpack usecase: ',
+    'Get backpack usecase:',
     () {
       test(
         'return a backpack entity',

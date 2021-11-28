@@ -9,22 +9,27 @@ void main() {
     itemModel = ItemModel(name: "test", value: 0);
   });
 
-  test(
-    'is a subclass of [ItemEntity]',
-    () async {
-      expect(itemModel, isA<ItemEntity>());
-    },
-  );
+  group(
+    'Item model:',
+    () {
+      test(
+        'is a subclass of [ItemEntity]',
+        () async {
+          expect(itemModel, isA<ItemEntity>());
+        },
+      );
 
-  final tJson = {"name": "Fiji Water", "points": 14};
+      final tJson = {"name": "Fiji Water", "points": 14};
 
-  test(
-    'should create a [ItemModel] from json',
-    () async {
-      // act
-      final tItemModel = ItemModel.fromJson(tJson);
-      // assert
-      expect(itemModel, isA<ItemModel>());
+      test(
+        'should create a [ItemModel] from json',
+        () async {
+          // act
+          final tItemModel = ItemModel.fromJson(tJson);
+          // assert
+          expect(itemModel, isA<ItemModel>());
+        },
+      );
     },
   );
 }

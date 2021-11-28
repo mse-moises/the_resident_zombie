@@ -11,7 +11,7 @@ void main() {
   final String tString = "POINT (0.0 0.0)";
 
   group(
-    'location entity: ',
+    'Location entity:',
     () {
       test(
         'should return a valid String from toString of a [LocationEntity]',

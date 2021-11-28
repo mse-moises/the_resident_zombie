@@ -31,6 +31,11 @@ void main() {
     tAk47,
   ];
 
+  group(
+    'Get Items type usecase:',
+    () {},
+  );
+
   test(
     'return a list of items from de',
     () async {
@@ -47,7 +52,8 @@ void main() {
     'return a [DeviceFailure] of items',
     () async {
       // arrange
-      when(repository.getItemsType()).thenAnswer((_) async => Left(DeviceFailure()));
+      when(repository.getItemsType())
+          .thenAnswer((_) async => Left(DeviceFailure()));
       // act
       final result = await usecase(NoParams());
       // assert

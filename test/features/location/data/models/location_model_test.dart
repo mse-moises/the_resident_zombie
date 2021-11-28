@@ -19,7 +19,7 @@ void main() {
   );
 
   group(
-    'last location',
+    'Location Model:',
     () {
       final tString = "POINT (0.0 0.0)";
       test(

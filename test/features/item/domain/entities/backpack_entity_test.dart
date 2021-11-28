@@ -30,7 +30,7 @@ void main() {
   final String tString = "Fiji Water:2;Campbell Soup:1";
 
   group(
-    'backpack entity ',
+    'Backpack entity:',
     () {
       test(
         'add [ItemEntity] to backpack',

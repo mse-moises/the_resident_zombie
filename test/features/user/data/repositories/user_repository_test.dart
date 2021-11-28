@@ -34,7 +34,7 @@ void main() {
     );
   });
 
-  group('create and get user', () {
+  group('User repository test:', () {
     final tName = "teste";
     final int tAge = 1;
     final tGender = "teste";
@@ -66,7 +66,8 @@ void main() {
         when(mockUserRemoteDataSource.createUser(any, any, any, any))
             .thenAnswer((_) async => tUserModel);
         // act
-        final result = await repository.createUser(tName, tAge, tGender, tPositionString);
+        final result =
+            await repository.createUser(tName, tAge, tGender, tPositionString);
         // assert
 
         verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender, any));
@@ -83,7 +84,8 @@ void main() {
         await repository.createUser(tName, tAge, tGender, tPositionString);
         // assert
 
-        verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender, tPositionString));
+        verify(mockUserRemoteDataSource.createUser(
+            tName, tAge, tGender, tPositionString));
         verify(mockUserCacheDataSource.cacheUser(tUserModel));
       });
 
@@ -96,10 +98,12 @@ void main() {
             .thenThrow(ServerException());
 
         // act
-        final result = await repository.createUser(tName, tAge, tGender, tPositionString);
+        final result =
+            await repository.createUser(tName, tAge, tGender, tPositionString);
         // assert
 
-        verify(mockUserRemoteDataSource.createUser(tName, tAge, tGender, tPositionString));
+        verify(mockUserRemoteDataSource.createUser(
+            tName, tAge, tGender, tPositionString));
         expect(result, equals(Left(ServerFailure())));
       });
     });
@@ -110,7 +114,8 @@ void main() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
 
       // act
-      final result = await repository.createUser(tName, tAge, tGender, tPositionString);
+      final result =
+          await repository.createUser(tName, tAge, tGender, tPositionString);
 
       // assert
       expect(result, equals(Left(ServerFailure())));

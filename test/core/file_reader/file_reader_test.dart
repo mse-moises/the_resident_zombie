@@ -17,14 +17,20 @@ void main() {
     {"name": "First Aid Pouch", "points": 10},
     {"name": "AK47", "points": 8}
   ];
-  test(
-    'getFile gets a items file',
-    () async {
-      // act
-      final result = json.decode(await fileGetter.getFile(tName));
 
-      // assert
-      expect(result, tResult);
+  group(
+    'FileReader:',
+    () {
+      test(
+        'getFile gets a items file',
+        () async {
+          // act
+          final result = json.decode(await fileGetter.getFile(tName));
+
+          // assert
+          expect(result, tResult);
+        },
+      );
     },
   );
 }

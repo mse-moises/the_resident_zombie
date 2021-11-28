@@ -17,7 +17,7 @@ void main() {
     networkInfo = NetworkInfoImpl(mockInternetConnectionChecker);
   });
 
-  group('isConnected', () {
+  group('NetworkInfo:', () {
     test('should forward the call to InternetConnectionChecker.hasConnection',
         () async {
       //arange

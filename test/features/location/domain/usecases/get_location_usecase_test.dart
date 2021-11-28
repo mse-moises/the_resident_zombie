@@ -21,28 +21,35 @@ void main() {
 
   final tLocation = LocationEntity(latitude: 0, longitude: 0);
 
-  test(
-    'return a LocationEntity when requested is successful',
-    () async {
-      // arrange
-        when(mockLocationRepository.getCurrentLocation()).thenAnswer((_) async => Right(tLocation));
-      // act
-        final result = await usecase(NoParams());
-      // assert
-        expect(result, equals(Right(tLocation)));
-        verify(mockLocationRepository.getCurrentLocation());
-    },
-  );
+  group(
+    'Get location usecase:',
+    () {
+      test(
+        'return a LocationEntity when requested is successful',
+        () async {
+          // arrange
+          when(mockLocationRepository.getCurrentLocation())
+              .thenAnswer((_) async => Right(tLocation));
+          // act
+          final result = await usecase(NoParams());
+          // assert
+          expect(result, equals(Right(tLocation)));
+          verify(mockLocationRepository.getCurrentLocation());
+        },
+      );
 
-  test(
-    'return a [Failure] when requested isnt successful',
-    () async {
-      // arrange
-        when(mockLocationRepository.getCurrentLocation()).thenAnswer((_) async => Left(DeviceFailure()));
-      // act
-        final result = await usecase(NoParams());
-      // assert
-        expect(result, equals(Left(DeviceFailure())));
+      test(
+        'return a [Failure] when requested isnt successful',
+        () async {
+          // arrange
+          when(mockLocationRepository.getCurrentLocation())
+              .thenAnswer((_) async => Left(DeviceFailure()));
+          // act
+          final result = await usecase(NoParams());
+          // assert
+          expect(result, equals(Left(DeviceFailure())));
+        },
+      );
     },
   );
 }

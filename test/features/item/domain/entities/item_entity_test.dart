@@ -8,7 +8,7 @@ void main() {
   });
 
   group(
-    'item entity',
+    'Item entity:',
     () {
       test(
         'clone [ItemEntity]',

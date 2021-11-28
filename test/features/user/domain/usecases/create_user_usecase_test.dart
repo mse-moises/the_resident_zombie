@@ -95,7 +95,7 @@ void main() {
   }
 
   group(
-    'create usecase: ',
+    'Create user usecase:',
     () {
       test(
         'get User Entity for the UserRepository when request to create a user',

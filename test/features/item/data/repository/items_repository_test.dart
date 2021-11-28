@@ -37,7 +37,7 @@ void main() {
   ];
 
   group(
-    'items repository:',
+    'Items repository:',
     () {
       test(
         'get a list of items from items repository',

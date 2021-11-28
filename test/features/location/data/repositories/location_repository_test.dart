@@ -28,27 +28,34 @@ void main() {
 
   final LocationEntity tLocationEntity = tLocationModel;
 
-  test(
-    'return a [LocalizationEntity] from requisition to datasource then the request is valid',
-    () async {
-      // arrange
-      when(mockLocationDataSource.getCurrentLocation()).thenAnswer((_) async => tLocationModel);
-      // act
-      final result = await locationRepository.getCurrentLocation();
-      // assert
-      expect(result,equals(Right(tLocationEntity)));
-    },
-  );
+  group(
+    'Location repository:',
+    () {
+      test(
+        'return a [LocalizationEntity] from requisition to datasource then the request is valid',
+        () async {
+          // arrange
+          when(mockLocationDataSource.getCurrentLocation())
+              .thenAnswer((_) async => tLocationModel);
+          // act
+          final result = await locationRepository.getCurrentLocation();
+          // assert
+          expect(result, equals(Right(tLocationEntity)));
+        },
+      );
 
-  test(
-    'return a [DeviceFailure] from requisition to datasource when the request is unsucessful',
-    () async {
-      // arrange
-      when(mockLocationDataSource.getCurrentLocation()).thenThrow(DeviceException());
-      // act
-      final result = await locationRepository.getCurrentLocation();
-      // assert
-      expect(result, equals(Left(DeviceFailure())));
+      test(
+        'return a [DeviceFailure] from requisition to datasource when the request is unsucessful',
+        () async {
+          // arrange
+          when(mockLocationDataSource.getCurrentLocation())
+              .thenThrow(DeviceException());
+          // act
+          final result = await locationRepository.getCurrentLocation();
+          // assert
+          expect(result, equals(Left(DeviceFailure())));
+        },
+      );
     },
   );
 }

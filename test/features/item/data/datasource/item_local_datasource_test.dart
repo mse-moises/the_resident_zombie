@@ -36,7 +36,7 @@ void main() {
   ];
 
   group(
-    'items local datasource:',
+    'Items local datasource:',
     () {
       test(
         'retun a list of [ItemModel]',
