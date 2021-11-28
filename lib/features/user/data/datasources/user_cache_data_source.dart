@@ -13,6 +13,8 @@ abstract class UserCacheDataSource {
   Future<void> cacheUser(UserModel userToCache);
 
   Future<String> saveContact(String id);
+
+  Future<List<String>> getAllContactsIds();
 }
 
 const String CACHED_USER = 'CACHED_USER';
@@ -55,6 +57,17 @@ class UserCacheDataSourceImpl implements UserCacheDataSource {
       if(!result) throw CacheException();
 
       return id;
+    } catch (e) {
+      throw CacheException();
+    }
+  }
+
+  @override
+  Future<List<String>> getAllContactsIds() async {
+     try {
+      final getStoredContacts = sharedPreferences.getString(CACHED_CONTACT);
+      if(getStoredContacts==null) return [];
+      return getStoredContacts.split(';');
     } catch (e) {
       throw CacheException();
     }
