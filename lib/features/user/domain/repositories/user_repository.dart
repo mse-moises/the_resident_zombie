@@ -4,4 +4,6 @@ import 'package:the_resident_zombie/features/user/domain/entities/user_entity.da
 
 abstract class UserRepository{
   Future<Either<Failure,UserEntity>> createUser(String name, int age, String gender, String location, String items);
+
+  Future<Either<Failure,bool>> updateUserLocation(String id, String location);
 }
