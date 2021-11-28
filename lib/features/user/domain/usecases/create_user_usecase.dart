@@ -17,20 +17,18 @@ class CreateUserUsecase implements UseCase<UserEntity, Params> {
 
   Future<Either<Failure, UserEntity>> call(Params params) async {
     
-    final locationEntityResponse = await getLocationUsecase(NoParams());
-
+    final locationEntityResponse = await getLocationUsecase(NoParamsGetLocation());
     if(locationEntityResponse.isLeft()) return Left(DeviceFailure());
-
     final locationEntity = locationEntityResponse.toOption().toNullable()!;
     
     final backpackResponse = await getBackpackUsecase(ParamsBackpack(params.itemQuantity));
-
     if(backpackResponse.isLeft()) return Left(DeviceFailure());
-
     final backpack = backpackResponse.toOption().toNullable()!;
     
     return await repository.createUser(params.name, params.age, params.gender, locationEntity.toStringAsCoordinated(), backpack.inventoryToString());
   }
+
+  
 }
 
 class Params extends Equatable {

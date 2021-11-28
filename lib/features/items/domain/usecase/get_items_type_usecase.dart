@@ -6,7 +6,7 @@ import 'package:the_resident_zombie/features/items/domain/entities/back_pack_ent
 import 'package:the_resident_zombie/features/items/domain/entities/item_entity.dart';
 import 'package:the_resident_zombie/features/items/domain/repository/items_repository.dart';
 
-class GetItemsTypeUseCase implements UseCase<List<ItemEntity>, NoParams>{
+class GetItemsTypeUseCase implements UseCase<List<ItemEntity>, NoParamsGetItemType>{
   final ItemsRepository repository;
 
   GetItemsTypeUseCase(this.repository);
@@ -17,7 +17,7 @@ class GetItemsTypeUseCase implements UseCase<List<ItemEntity>, NoParams>{
 
 }
 
-class NoParams extends Equatable {
+class NoParamsGetItemType extends Equatable {
   @override
   List<Object> get props => [];
 }

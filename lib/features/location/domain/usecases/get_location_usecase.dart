@@ -6,17 +6,17 @@ import 'package:the_resident_zombie/features/location/domain/entities/location_e
 import 'package:the_resident_zombie/features/location/domain/repositories/location_repository.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/create_user_usecase.dart';
 
-class GetLocationUseCase implements UseCase<LocationEntity,NoParams> {
+class GetLocationUseCase implements UseCase<LocationEntity,NoParamsGetLocation> {
   final LocationRepository repository;
 
   GetLocationUseCase(this.repository);
   @override
-  Future<Either<Failure, LocationEntity>> call(NoParams noParams) async {
+  Future<Either<Failure, LocationEntity>> call(NoParamsGetLocation noParams) async {
     return await repository.getCurrentLocation();
   }
 }
 
-class NoParams extends Equatable {
+class NoParamsGetLocation extends Equatable {
   @override
   List<Object> get props => [];
 }

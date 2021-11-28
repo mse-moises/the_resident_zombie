@@ -15,7 +15,7 @@ class GetBackpackFromNumbersUsecase implements UseCase<BackPackEntity, ParamsBac
   @override
   Future<Either<Failure, BackPackEntity>> call(params) async {
     final backPack = BackPackEntity();
-    final itemsTypeResponse = await getItemsType(NoParams());
+    final itemsTypeResponse = await getItemsType(NoParamsGetItemType());
 
     if(itemsTypeResponse.isLeft()) return Left(DeviceFailure());
     
