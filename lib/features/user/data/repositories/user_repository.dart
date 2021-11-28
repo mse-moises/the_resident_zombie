@@ -78,8 +78,13 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, List<String>>> getAllContactsIds() {
-    // TODO: implement getAllContactsIds
-    throw UnimplementedError();
+  Future<Either<Failure, List<String>>> getAllContactsIds() async {
+    try {
+      final result = await cacheDataSource.getAllContactsIds();
+
+      return Right(result);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
   }
 }
