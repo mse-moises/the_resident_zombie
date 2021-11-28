@@ -18,16 +18,16 @@ class BackPackEntity extends Equatable {
 
     List<List<ItemEntity>> allSameEntities = [];
 
-    for (int i = allEntities.length - 1;
-        i >= 0 && allEntities.isNotEmpty;
-        i--) {
-      final itemEntity = allEntities[i];
+    if(allEntities.isEmpty) return '';
+
+    while(!allEntities.isEmpty){
+      final itemEntity = allEntities[0];
       // get the name of the item
       String firstItemName = itemEntity.name;
       // array that gonna contain all the item with the same name
       final sameItems = <ItemEntity>[];
 
-      // travel throught the list searching for items with the same name
+            // travel throught the list searching for items with the same name
       for (int i = allEntities.length - 1;
           i >= 0 && allEntities.isNotEmpty;
           i--) {
@@ -43,6 +43,7 @@ class BackPackEntity extends Equatable {
 
       allSameEntities.add(sameItems);
     }
+
     // should have a array of subarrays with the same itens
 
     // sort list  by list with more items to list with less items
