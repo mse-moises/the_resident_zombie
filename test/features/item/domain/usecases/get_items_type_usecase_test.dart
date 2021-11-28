@@ -32,7 +32,7 @@ void main() {
   ];
 
   test(
-    'return a list of items',
+    'return a list of items from de',
     () async {
       // arrange
       when(repository.getItemsType()).thenAnswer((_) async => Right(listItems));
