@@ -23,14 +23,26 @@ void main() {
     datasource = UserRemoteDataSourceImpl(client: mockHttpClient);
   });
 
-  void setUpMockHttpClient200() {
+  void setUpMockPostHttpClient200() {
     when(mockHttpClient.post(any,
             headers: anyNamed('headers'), body: anyNamed('body')))
         .thenAnswer((_) async => http.Response(fixture('user.json'), 200));
   }
 
-  void setUpMockHttpClientFailure404() {
+  void setUpMockPostHttpClientFailure404() {
     when(mockHttpClient.post(any,
+            headers: anyNamed('headers'), body: anyNamed('body')))
+        .thenAnswer((_) async => http.Response('SomethingWentWrong', 404));
+  }
+
+    void setUpMockPatchHttpClient200() {
+    when(mockHttpClient.patch(any,
+            headers: anyNamed('headers'), body: anyNamed('body')))
+        .thenAnswer((_) async => http.Response(fixture('user.json'), 200));
+  }
+
+  void setUpMockPatchHttpClientFailure404() {
+    when(mockHttpClient.patch(any,
             headers: anyNamed('headers'), body: anyNamed('body')))
         .thenAnswer((_) async => http.Response('SomethingWentWrong', 404));
   }
@@ -50,9 +62,10 @@ void main() {
         'return a valid UserModel from a GetRequest on a URL with a string being the endpoint and with application/json header when the response code is 200',
         () async {
           // arrange
-          setUpMockHttpClient200();
+          setUpMockPostHttpClient200();
           // act
-          final result = await datasource.createUser(tName, tAge, tGender, tPositionString,tItems);
+          final result = await datasource.createUser(
+              tName, tAge, tGender, tPositionString, tItems);
           // assert
           expect(result, equals(tUserModel));
         },
@@ -62,11 +75,44 @@ void main() {
         'throw a ServerException from a GET request on a URL with a string being the endpoint and with application/json header when the resposne code isnt 200',
         () async {
           // arrange
-          setUpMockHttpClientFailure404();
+          setUpMockPostHttpClientFailure404();
           // act
           final call = datasource.createUser;
           // assert
-          expect(()=> call(tName, tAge, tGender, tPositionString,tItems), throwsA(TypeMatcher<ServerException>()));
+          expect(() => call(tName, tAge, tGender, tPositionString, tItems),
+              throwsA(TypeMatcher<ServerException>()));
+        },
+      );
+
+      group(
+        ' Update location -',
+        () {
+          final tIdentifier = 'test';
+          final tLocation = 'test';
+          test(
+            'return a tUserModel if the request was successful',
+            () async {
+              // arrange
+              setUpMockPatchHttpClient200();
+              // act
+              final result =
+                  await datasource.updateUserLocation(tIdentifier, tLocation);
+              // assert
+              expect(result, equals(tUserModel));
+            },
+          );
+          test(
+            'throw a ServerException from a the request wasnt successful',
+            () async {
+              // arrange
+              setUpMockPatchHttpClientFailure404();
+              // act
+              final call = datasource.updateUserLocation;
+              // assert
+              expect(() => call(tIdentifier,tLocation),
+                  throwsA(TypeMatcher<ServerException>()));
+            },
+          );
         },
       );
     },
