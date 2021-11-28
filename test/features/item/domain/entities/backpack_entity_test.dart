@@ -51,7 +51,15 @@ void main() {
           emptyBackPack.add(tItem1);
           emptyBackPack.add(tItem2);
           // assert
-          expect(emptyBackPack.toString(), equals(tString));
+          expect(emptyBackPack.inventoryToString(), equals(tString));
+        },
+      );
+
+      test(
+        'get a empty String toString method on backpack ',
+        () async {
+          // assert
+          expect(emptyBackPack.inventoryToString(), equals(''));
         },
       );
 
