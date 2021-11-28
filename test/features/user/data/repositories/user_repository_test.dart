@@ -213,5 +213,36 @@ void main() {
         );
       },
     );
+
+    group(
+      'Save contact -',
+      () {
+
+        final tIdentifier = 'test';
+        test(
+          'return a String if the request was successful',
+          () async {
+            // arrange
+            when(mockUserCacheDataSource.saveContact(any)).thenAnswer((realInvocation) async => tIdentifier);
+            // act
+            final result = await repository.saveContact(tIdentifier);
+            // assert
+            expect(result, equals(Right(tIdentifier)));
+          },
+        );
+
+        test(
+          'return a [CacheFailure] if the request wasnt successful',
+          () async {
+            // arrange
+            when(mockUserCacheDataSource.saveContact(any)).thenThrow(CacheException());
+            // act
+            final result = await repository.saveContact(tIdentifier);
+            // assert
+            expect(result, equals(Left(CacheFailure())));
+          },
+        );
+      },
+    );
   });
 }
