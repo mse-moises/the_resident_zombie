@@ -29,7 +29,7 @@ class CreateUserUsecase implements UseCase<UserEntity, Params> {
 
     final backpack = backpackResponse.toOption().toNullable()!;
     
-    return await repository.createUser(params.name, params.age, params.gender, locationEntity.toString());
+    return await repository.createUser(params.name, params.age, params.gender, locationEntity.toStringAsCoordinated(), backpack.inventoryToString());
   }
 }
 

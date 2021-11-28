@@ -9,7 +9,7 @@ abstract class UserRemoteDataSource {
   ///
   ///
   ///Throws a [ServerException] for all error codes.
-  Future<UserModel> createUser(String name, int age, String gender, String location);
+  Future<UserModel> createUser(String name, int age, String gender, String location, String items);
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
@@ -17,13 +17,14 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
   UserRemoteDataSourceImpl({required this.client});
   @override
-  Future<UserModel> createUser(String name, int age, String gender, String location) async {
+  Future<UserModel> createUser(String name, int age, String gender, String location, String items) async {
     final body = {
       "person": {
-        "name": "$name",
-        "age": age.toString(),
-        "gender": "$gender",
-        "location": "$location",
+        "name": name,
+        "age": age,
+        "gender": gender,
+        "lonlat": location,
+        "items": items
       }
     };
 

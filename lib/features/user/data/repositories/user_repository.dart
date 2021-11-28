@@ -24,12 +24,13 @@ class UserRepositoryImpl implements UserRepository {
     int age,
     String gender,
     String location,
+    String items,
   ) async {
     if (!await networkInfo.isConnected) return Left(ServerFailure());
 
     try {
-      final remoteAddress =
-          await remoteDataSource.createUser(name, age, gender,location);
+      final remoteAddress = await remoteDataSource.createUser(
+          name, age, gender, location, items);
 
       cacheDataSource.cacheUser(remoteAddress);
       return Right(remoteAddress);
