@@ -4,6 +4,10 @@ import 'package:the_resident_zombie/features/items/domain/entities/item_entity.d
 class BackPackEntity extends Equatable {
   List<ItemEntity> items = [];
 
+  BackPackEntity({startWithItems}){
+    if(startWithItems != null) items.addAll(startWithItems);
+  }
+
   void add(ItemEntity itemEntity) {
     items.add(itemEntity);
   }
