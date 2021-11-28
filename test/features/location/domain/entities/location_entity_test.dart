@@ -10,13 +10,18 @@ void main() {
 
   final String tString = "POINT (0.0 0.0)";
 
-  test(
-    'should return a valid String from toString of a [LocationEntity]',
-    () async {
-      // act
-      final result = tLocationEntity.toString();
-      // assert
-      expect(result, equals(tString));
+  group(
+    'location entity: ',
+    () {
+      test(
+        'should return a valid String from toString of a [LocationEntity]',
+        () async {
+          // act
+          final result = tLocationEntity.toStringAsCordinated();
+          // assert
+          expect(result, equals(tString));
+        },
+      );
     },
   );
 }

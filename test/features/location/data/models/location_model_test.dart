@@ -29,7 +29,7 @@ void main() {
           final expectString = tString;
 
           // act
-          final result = tLocationModel.toString();
+          final result = tLocationModel.toStringAsCordinated();
 
           // assert
           expect(result, equals(tString));
