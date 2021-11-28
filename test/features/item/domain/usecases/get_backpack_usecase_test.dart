@@ -53,7 +53,7 @@ void main() {
 
   final tBackpack = BackPackEntity(startWithItems: listItemsInBackpack);
 
-  final tParams = Params(tQuantities);
+  final tParams = ParamsBackpack(tQuantities);
 
   group(
     'get backpack usecase: ',
