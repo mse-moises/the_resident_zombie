@@ -16,6 +16,8 @@ abstract class UserRemoteDataSource {
 
 const String BASE_URL = "http://zssn-backend-example.herokuapp.com/api/";
 
+const Map<String,String> requestHeaders = {'Content-Type': 'application/json'};
+
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   final http.Client client;
@@ -35,7 +37,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
     final response = await client.post(
       Uri.parse('${BASE_URL}people.json'),
-      headers: {'Content-Type': 'application/json'},
+      headers: requestHeaders,
       body:body,
     );
 
@@ -56,7 +58,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
     final response = await client.patch(
       Uri.parse('${BASE_URL}people/$id.json'),
-      headers: {'Content-Type': 'application/json'},
+      headers: requestHeaders,
       body:body,
     );
 
@@ -72,7 +74,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
     final response = await client.get(
       Uri.parse('${BASE_URL}people/$id.json'),
-      headers: {'Content-Type': 'application/json'},
+      headers: requestHeaders,
     );
 
     if (response.statusCode == 200) {
