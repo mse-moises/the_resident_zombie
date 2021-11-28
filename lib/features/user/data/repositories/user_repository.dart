@@ -52,6 +52,25 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 
+  // @override
+  // Future<Either<Failure, bool>> makeAContact(String id) {
+  //   // TODO: implement makeAContact
+  //   throw UnimplementedError();
+  // }
+
+  @override
+  Future<Either<Failure, UserEntity>> getUserEntityById(String id) async {
+    if (!await networkInfo.isConnected) return Left(ServerFailure());
+
+    try {
+      final result = await remoteDataSource.getUserEntityById(id);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
   
 
 }
