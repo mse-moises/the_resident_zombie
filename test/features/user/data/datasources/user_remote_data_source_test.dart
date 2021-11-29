@@ -24,14 +24,12 @@ void main() {
   });
 
   void setUpMockGetHttpClient200ReturnUser() {
-    when(mockHttpClient.get(any,
-            headers: anyNamed('headers')))
+    when(mockHttpClient.get(any, headers: anyNamed('headers')))
         .thenAnswer((_) async => http.Response(fixture('user.json'), 200));
   }
 
   void setUpMockGetHttpClientFailure404() {
-    when(mockHttpClient.get(any,
-            headers: anyNamed('headers')))
+    when(mockHttpClient.get(any, headers: anyNamed('headers')))
         .thenAnswer((_) async => http.Response('SomethingWentWrong', 404));
   }
 
@@ -152,6 +150,39 @@ void main() {
               final call = datasource.getUserEntityById;
               // assert
               expect(() => call(tIdentifier),
+                  throwsA(TypeMatcher<ServerException>()));
+            },
+          );
+        },
+      );
+
+      group(
+        'Flag user as infected',
+        () {
+          final tIdentifier = "test";
+          test(
+            'return a bool if the request was successful',
+            () async {
+              // arrange
+              when(mockHttpClient.post(any, headers: anyNamed('headers'), body: anyNamed('body')))
+                  .thenAnswer(
+                      (_) async => http.Response(fixture('user.json'), 202));
+              // act
+              final result = await datasource.flagUserAsInfected(tIdentifier);
+              // assert
+              expect(result, isA<bool>());
+            },
+          );
+
+          test(
+            'throw a [ServerException] if the reques wasnt successful',
+            () async {
+              // arrange
+              setUpMockPostHttpClientFailure404();
+              // act
+              final call = () => datasource.flagUserAsInfected(tIdentifier);
+              // assert
+              expect(() => call(),
                   throwsA(TypeMatcher<ServerException>()));
             },
           );
