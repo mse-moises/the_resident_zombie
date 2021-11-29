@@ -112,4 +112,15 @@ class UserRepositoryImpl implements UserRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> getLocalUser() async {
+    try {
+      final result = await cacheDataSource.getLocalUser();
+
+      return Right(result);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
 }
