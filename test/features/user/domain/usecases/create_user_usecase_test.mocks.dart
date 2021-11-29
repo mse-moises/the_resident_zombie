@@ -7,14 +7,15 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:the_resident_zombie/core/error/failures.dart' as _i5;
+import 'package:the_resident_zombie/core/params/confirmation.dart' as _i7;
 import 'package:the_resident_zombie/features/items/domain/entities/item_entity.dart'
-    as _i10;
+    as _i11;
 import 'package:the_resident_zombie/features/items/domain/repository/items_repository.dart'
-    as _i9;
+    as _i10;
 import 'package:the_resident_zombie/features/location/domain/entities/location_entity.dart'
-    as _i8;
+    as _i9;
 import 'package:the_resident_zombie/features/location/domain/repositories/location_repository.dart'
-    as _i7;
+    as _i8;
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart'
     as _i6;
 import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart'
@@ -75,11 +76,12 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
                   _FakeEither_0<_i5.Failure, List<String>>()))
           as _i4.Future<_i2.Either<_i5.Failure, List<String>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, bool>> flagUserAsInfected(String? id) =>
+  _i4.Future<_i2.Either<_i5.Failure, _i7.Confirmation>> flagUserAsInfected(
+          String? id) =>
       (super.noSuchMethod(Invocation.method(#flagUserAsInfected, [id]),
-              returnValue: Future<_i2.Either<_i5.Failure, bool>>.value(
-                  _FakeEither_0<_i5.Failure, bool>()))
-          as _i4.Future<_i2.Either<_i5.Failure, bool>>);
+          returnValue: Future<_i2.Either<_i5.Failure, _i7.Confirmation>>.value(
+              _FakeEither_0<_i5.Failure, _i7.Confirmation>())) as _i4
+          .Future<_i2.Either<_i5.Failure, _i7.Confirmation>>);
   @override
   String toString() => super.toString();
 }
@@ -88,19 +90,19 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLocationRepository extends _i1.Mock
-    implements _i7.LocationRepository {
+    implements _i8.LocationRepository {
   MockLocationRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i8.LocationEntity>>
+  _i4.Future<_i2.Either<_i5.Failure, _i9.LocationEntity>>
       getCurrentLocation() =>
           (super.noSuchMethod(Invocation.method(#getCurrentLocation, []),
                   returnValue:
-                      Future<_i2.Either<_i5.Failure, _i8.LocationEntity>>.value(
-                          _FakeEither_0<_i5.Failure, _i8.LocationEntity>()))
-              as _i4.Future<_i2.Either<_i5.Failure, _i8.LocationEntity>>);
+                      Future<_i2.Either<_i5.Failure, _i9.LocationEntity>>.value(
+                          _FakeEither_0<_i5.Failure, _i9.LocationEntity>()))
+              as _i4.Future<_i2.Either<_i5.Failure, _i9.LocationEntity>>);
   @override
   String toString() => super.toString();
 }
@@ -108,18 +110,18 @@ class MockLocationRepository extends _i1.Mock
 /// A class which mocks [ItemsRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockItemsRepository extends _i1.Mock implements _i9.ItemsRepository {
+class MockItemsRepository extends _i1.Mock implements _i10.ItemsRepository {
   MockItemsRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i10.ItemEntity>>> getItemsType() =>
+  _i4.Future<_i2.Either<_i5.Failure, List<_i11.ItemEntity>>> getItemsType() =>
       (super.noSuchMethod(Invocation.method(#getItemsType, []),
               returnValue:
-                  Future<_i2.Either<_i5.Failure, List<_i10.ItemEntity>>>.value(
-                      _FakeEither_0<_i5.Failure, List<_i10.ItemEntity>>()))
-          as _i4.Future<_i2.Either<_i5.Failure, List<_i10.ItemEntity>>>);
+                  Future<_i2.Either<_i5.Failure, List<_i11.ItemEntity>>>.value(
+                      _FakeEither_0<_i5.Failure, List<_i11.ItemEntity>>()))
+          as _i4.Future<_i2.Either<_i5.Failure, List<_i11.ItemEntity>>>);
   @override
   String toString() => super.toString();
 }

@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_resident_zombie/core/error/failures.dart';
+import 'package:the_resident_zombie/core/params/confirmation.dart';
 
 import 'package:the_resident_zombie/features/user/domain/usecases/flag_user_as_infected_usecase.dart';
 
@@ -22,7 +23,7 @@ void main() {
       test(
         'shoud return a bool when the resquest is successful',
         () async {
-          bool tReturn = true;
+          final tReturn = Confirmation();
           // arrange
           when(repository.flagUserAsInfected(any))
               .thenAnswer((_) async => Right(tReturn));
@@ -30,7 +31,7 @@ void main() {
           final result = await usecase(FlagParams(identifier: tIdentifier));
 
           // assert
-          expect(result, Right(true));
+          expect(result, Right(Confirmation()));
         },
       );
 
