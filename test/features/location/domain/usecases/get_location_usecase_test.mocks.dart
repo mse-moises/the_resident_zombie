@@ -41,9 +41,9 @@ class MockLocationRepository extends _i1.Mock
                           _FakeEither_0<_i5.Failure, _i6.LocationEntity>()))
               as _i4.Future<_i2.Either<_i5.Failure, _i6.LocationEntity>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.LocationEntity>> GetLocationFromId(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.LocationEntity>> getLocationFromId(
           String? identifier) =>
-      (super.noSuchMethod(Invocation.method(#GetLocationFromId, [identifier]),
+      (super.noSuchMethod(Invocation.method(#getLocationFromId, [identifier]),
               returnValue:
                   Future<_i2.Either<_i5.Failure, _i6.LocationEntity>>.value(
                       _FakeEither_0<_i5.Failure, _i6.LocationEntity>()))

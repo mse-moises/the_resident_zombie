@@ -27,7 +27,7 @@ void main() {
         'return a [LocationEntity]',
         () async {
           // arrange
-          when(repository.GetLocationFromId(any))
+          when(repository.getLocationFromId(any))
               .thenAnswer((_) async => Right(tlocation));
           // act
           final result = await usecase(GetLocationFromIdParams(tId));
@@ -41,7 +41,7 @@ void main() {
         'return a [ServerFailure]',
         () async {
           // arrange
-          when(repository.GetLocationFromId(any))
+          when(repository.getLocationFromId(any))
               .thenAnswer((_) async => Left(ServerFailure()));
           // act
           final result = await usecase(GetLocationFromIdParams(tId));
