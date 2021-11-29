@@ -37,6 +37,8 @@ void main() {
           "gender": "M",
         };
 
+        final tUserExpected = UserModel.fromJson(expectMap);
+
         // assert
 
         expect(result, expectMap);
