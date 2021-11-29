@@ -7,7 +7,7 @@ import 'package:the_resident_zombie/features/items/domain/entities/item_entity.d
 import 'package:the_resident_zombie/features/items/domain/repository/items_repository.dart';
 import 'package:the_resident_zombie/features/items/domain/usecase/get_items_type_usecase.dart';
 
-class GetBackpackFromNumbersUsecase implements UseCase<BackPackEntity, ParamsBackpack> {
+class GetBackpackFromNumbersUsecase implements UseCase<BackPackEntity, BackPackParams> {
   final GetItemsTypeUseCase getItemsType;
 
   GetBackpackFromNumbersUsecase({required this.getItemsType});
@@ -30,10 +30,10 @@ class GetBackpackFromNumbersUsecase implements UseCase<BackPackEntity, ParamsBac
   }
 }
 
-class ParamsBackpack extends Equatable {
+class BackPackParams extends Equatable {
   final List<int> quantities;
 
-  ParamsBackpack(this.quantities);
+  BackPackParams(this.quantities);
   @override
   List<Object> get props => [];
 }
