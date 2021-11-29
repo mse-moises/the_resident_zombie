@@ -75,6 +75,12 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
                   _FakeEither_0<_i5.Failure, List<String>>()))
           as _i4.Future<_i2.Either<_i5.Failure, List<String>>>);
   @override
+  _i4.Future<_i2.Either<_i5.Failure, bool>> flagUserAsInfected(String? id) =>
+      (super.noSuchMethod(Invocation.method(#flagUserAsInfected, [id]),
+              returnValue: Future<_i2.Either<_i5.Failure, bool>>.value(
+                  _FakeEither_0<_i5.Failure, bool>()))
+          as _i4.Future<_i2.Either<_i5.Failure, bool>>);
+  @override
   String toString() => super.toString();
 }
 

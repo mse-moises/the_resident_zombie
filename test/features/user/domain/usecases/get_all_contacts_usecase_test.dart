@@ -70,13 +70,12 @@ void main() {
           // act
           final result = await getAllContactsUsecase(GetAllContactsParams());
 
-
           // assert
           expect(result, Left(CacheFailure()));
         },
       );
 
-            test(
+      test(
         'return a List of UserEntitty even if the request for the users models wasnt successful',
         () async {
           // arrange
