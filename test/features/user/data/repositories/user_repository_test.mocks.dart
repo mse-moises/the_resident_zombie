@@ -85,6 +85,10 @@ class MockUserRemoteDataSource extends _i1.Mock
               returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
           as _i4.Future<_i2.UserModel>);
   @override
+  _i4.Future<bool> flagUserAsInfected(String? id) =>
+      (super.noSuchMethod(Invocation.method(#flagUserAsInfected, [id]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
   String toString() => super.toString();
 }
 

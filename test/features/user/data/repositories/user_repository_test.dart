@@ -279,5 +279,38 @@ void main() {
         );
       },
     );
+
+    group(
+      'Flag user as infected -',
+      () {
+        final tIdentifier = "test";
+        test(
+          'return bool if the request was successful',
+          () async {
+            // arrange
+            when(mockUserRemoteDataSource.flagUserAsInfected(any))
+                .thenAnswer((_) async => true);
+            // act
+            final result = await repository.flagUserAsInfected(tIdentifier);
+
+            // assert
+            expect(result, Right(true));
+          },
+        );
+
+        test(
+          'return [ServerFailure] if the request wasnt successful',
+          () async {
+            // arrange
+            when(mockUserRemoteDataSource.flagUserAsInfected(any))
+                .thenThrow(ServerException());
+            // act
+            final result = await repository.flagUserAsInfected(tIdentifier);
+            // assert
+            expect(result, Left(ServerFailure()));
+          },
+        );
+      },
+    );
   });
 }
