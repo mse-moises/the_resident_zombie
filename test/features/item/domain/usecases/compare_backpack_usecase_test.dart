@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:the_resident_zombie/core/error/failures.dart';
+import 'package:the_resident_zombie/core/params/confirmation.dart';
 import 'package:the_resident_zombie/features/items/domain/entities/back_pack_entity.dart';
 import 'package:the_resident_zombie/features/items/domain/entities/item_entity.dart';
 import 'package:the_resident_zombie/features/items/domain/usecase/compare_backpack_usecase.dart';
@@ -24,7 +26,7 @@ void main() {
           // act
           final result = await usecase(CompareBackPackParams(higherValue,lowerValue));
           // assert
-          expect(result, Right(5));
+          expect(result, Left(BackPackComparationFailure(5)));
         },
       );
 
@@ -34,17 +36,17 @@ void main() {
           // act
           final result = await usecase(CompareBackPackParams(lowerValue,higherValue));
           // assert
-          expect(result, Right(-5));
+          expect(result, Left(BackPackComparationFailure(-5)));
         },
       );
 
       test(
-        'should return a 0',
+        'should return a Confirmation',
         () async {
           // act
           final result = await usecase(CompareBackPackParams(higherValue,higherValue));
           // assert
-          expect(result, Right(0));
+          expect(result, Right(Confirmation()));
         },
       );
     },
