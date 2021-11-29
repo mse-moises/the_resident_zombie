@@ -13,7 +13,7 @@ class GetLocationFromIdUseCase
   GetLocationFromIdUseCase({required this.repository});
   @override
   Future<Either<Failure, LocationEntity>> call(params) async{
-    return await repository.GetLocationFromId(params.identifier);
+    return await repository.getLocationFromId(params.identifier);
     // TODO: implement call
     throw UnimplementedError();
   }
