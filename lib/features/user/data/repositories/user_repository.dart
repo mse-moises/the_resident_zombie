@@ -87,4 +87,15 @@ class UserRepositoryImpl implements UserRepository {
       return Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> flagUserAsInfected(String id) async {
+    try {
+      final result = await remoteDataSource.flagUserAsInfected(id);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 }
