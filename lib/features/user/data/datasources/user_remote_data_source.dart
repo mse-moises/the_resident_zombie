@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:the_resident_zombie/core/error/exceptions.dart';
+import 'package:the_resident_zombie/core/params/confirmation.dart';
 import 'package:the_resident_zombie/features/user/data/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,7 +14,7 @@ abstract class UserRemoteDataSource {
       String name, int age, String gender, String location, String items);
   Future<UserModel> updateUserLocation(String id, String location);
   Future<UserModel> getUserEntityById(String id);
-  Future<bool> flagUserAsInfected(String id);
+  Future<Confirmation> flagUserAsInfected(String id);
 }
 
 const String BASE_URL = "http://zssn-backend-example.herokuapp.com/api/";
@@ -86,7 +87,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   }
 
   @override
-  Future<bool> flagUserAsInfected(String id) async {
+  Future<Confirmation> flagUserAsInfected(String id) async {
     final body = {"infected": id};
 
     final response = await client.post(
@@ -96,7 +97,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 202) {
-      return true;
+      return Confirmation();
     } else {
       throw ServerException();
     }

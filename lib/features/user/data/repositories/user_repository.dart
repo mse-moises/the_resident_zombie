@@ -1,4 +1,5 @@
 import 'package:the_resident_zombie/core/error/exceptions.dart';
+import 'package:the_resident_zombie/core/params/confirmation.dart';
 import 'package:the_resident_zombie/core/platform/network_info.dart';
 import 'package:the_resident_zombie/features/user/data/datasources/user_cache_data_source.dart';
 import 'package:the_resident_zombie/features/user/data/datasources/user_remote_data_source.dart';
@@ -89,7 +90,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> flagUserAsInfected(String id) async {
+  Future<Either<Failure, Confirmation>> flagUserAsInfected(String id) async {
     try {
       final result = await remoteDataSource.flagUserAsInfected(id);
 

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:the_resident_zombie/core/error/failures.dart';
+import 'package:the_resident_zombie/core/params/confirmation.dart';
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart';
 
 abstract class UserRepository{
@@ -13,5 +14,5 @@ abstract class UserRepository{
 
   Future<Either<Failure,List<String>>> getAllContactsIds();
 
-  Future<Either<Failure,bool>> flagUserAsInfected(String id);
+  Future<Either<Failure,Confirmation>> flagUserAsInfected(String id);
 }
