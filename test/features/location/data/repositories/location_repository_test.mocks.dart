@@ -5,8 +5,10 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:the_resident_zombie/features/location/data/datasources/location_data_source.dart'
+import 'package:the_resident_zombie/features/location/data/datasources/local_location_data_source.dart'
     as _i3;
+import 'package:the_resident_zombie/features/location/data/datasources/remote_location_data_source.dart'
+    as _i5;
 import 'package:the_resident_zombie/features/location/data/models/location_model.dart'
     as _i2;
 
@@ -21,12 +23,12 @@ import 'package:the_resident_zombie/features/location/data/models/location_model
 
 class _FakeLocationModel_0 extends _i1.Fake implements _i2.LocationModel {}
 
-/// A class which mocks [LocationDataSource].
+/// A class which mocks [LocalLocationDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocationDataSource extends _i1.Mock
-    implements _i3.LocationDataSource {
-  MockLocationDataSource() {
+class MockLocalLocationDataSource extends _i1.Mock
+    implements _i3.LocalLocationDataSource {
+  MockLocalLocationDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -35,6 +37,25 @@ class MockLocationDataSource extends _i1.Mock
           Invocation.method(#getCurrentLocation, []),
           returnValue: Future<_i2.LocationModel>.value(_FakeLocationModel_0()))
       as _i4.Future<_i2.LocationModel>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [RemoteLocationDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRemoteLocationDataSource extends _i1.Mock
+    implements _i5.RemoteLocationDataSource {
+  MockRemoteLocationDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.LocationModel> getLocationFromId(String? id) =>
+      (super.noSuchMethod(Invocation.method(#getLocationFromId, [id]),
+              returnValue:
+                  Future<_i2.LocationModel>.value(_FakeLocationModel_0()))
+          as _i4.Future<_i2.LocationModel>);
   @override
   String toString() => super.toString();
 }
