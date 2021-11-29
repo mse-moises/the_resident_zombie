@@ -19,7 +19,6 @@ void main() {
     itemTest = ItemEntity(name: 'test', value: 0);
 
     backPackWithItem.add(itemFiji);
-    
     backPackWithTwoItems.add(itemFiji);
     backPackWithTwoItems.add(itemTest);
   });
@@ -72,6 +71,17 @@ void main() {
 
           // assert
           expect(emptyBackPack, equals(backPackWithTwoItems));
+        },
+      );
+
+      test(
+        'return the somative value of the items in the backpack',
+        () async {
+          emptyBackPack.add(itemFiji);
+          emptyBackPack.add(itemFiji);
+
+          // assert
+          expect(emptyBackPack.getBackPackValue(), 28);
         },
       );
     },
