@@ -94,6 +94,14 @@ class MockUserRemoteDataSource extends _i1.Mock
                   Future<_i3.Confirmation>.value(_FakeConfirmation_1()))
           as _i5.Future<_i3.Confirmation>);
   @override
+  _i5.Future<_i3.Confirmation> tradeWithUser(
+          String? pick, String? pay, String? otherUserName) =>
+      (super.noSuchMethod(
+              Invocation.method(#tradeWithUser, [pick, pay, otherUserName]),
+              returnValue:
+                  Future<_i3.Confirmation>.value(_FakeConfirmation_1()))
+          as _i5.Future<_i3.Confirmation>);
+  @override
   String toString() => super.toString();
 }
 

@@ -313,5 +313,39 @@ void main() {
         );
       },
     );
+
+    group(
+      'Trade items -',
+      () {
+        final tPick = "test";
+        final tPay = "test";
+        final tName = "test";
+        test(
+          'return a [Confirmation] if the request was successful',
+          () async {
+            // arrange
+            when(mockUserRemoteDataSource.tradeWithUser(any, any, any))
+                .thenAnswer((_) async => Confirmation());
+            // act
+            final result = await repository.tradeWithUser(tPick, tPay, tName);
+            // assert
+            expect(result, Right(Confirmation()));
+          },
+        );
+
+        test(
+          'return [ServerFailure] if the request wasnt successful',
+          () async {
+            // arrange
+            when(mockUserRemoteDataSource.tradeWithUser(any, any, any))
+                .thenThrow(ServerException());
+            // act
+            final result = await repository.tradeWithUser(tPick, tPay, tName);
+            // assert
+            expect(result, Left(ServerFailure()));
+          },
+        );
+      },
+    );
   });
 }
