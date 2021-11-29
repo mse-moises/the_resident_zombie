@@ -4,4 +4,6 @@ import 'package:the_resident_zombie/features/location/domain/entities/location_e
 
 abstract class LocationRepository {
   Future<Either<Failure,LocationEntity>> getCurrentLocation();
+  Future<Either<Failure,LocationEntity>> getLocationFromId(String identifier);
+  
 }
