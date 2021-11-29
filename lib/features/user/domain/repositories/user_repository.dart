@@ -12,4 +12,6 @@ abstract class UserRepository{
   Future<Either<Failure,UserEntity>> getUserEntityById(String id);
 
   Future<Either<Failure,List<String>>> getAllContactsIds();
+
+  Future<Either<Failure,bool>> flagUserAsInfected(String id);
 }
