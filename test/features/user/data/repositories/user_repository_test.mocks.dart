@@ -37,8 +37,8 @@ class MockUserCacheDataSource extends _i1.Mock
   }
 
   @override
-  _i5.Future<_i2.UserModel> getUser() =>
-      (super.noSuchMethod(Invocation.method(#getUser, []),
+  _i5.Future<_i2.UserModel> getLocalUser() =>
+      (super.noSuchMethod(Invocation.method(#getLocalUser, []),
               returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
           as _i5.Future<_i2.UserModel>);
   @override

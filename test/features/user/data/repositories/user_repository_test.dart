@@ -347,5 +347,38 @@ void main() {
         );
       },
     );
+
+    group(
+      'Get local user -',
+      () {
+        final tUser = UserModel(name:'test',age:30,gender:'t');
+        test(
+          'return a [UserEntity]',
+          () async {
+            // arrange
+            when(mockUserCacheDataSource.getLocalUser()).thenAnswer((_) async => tUser);
+            // act
+            final result = await repository.getLocalUser();
+
+            // assert
+            expect(result, Right(tUser));
+          },
+        );
+
+
+        test(
+          'return [CacheFailure] if the request wasnt successful',
+          () async {
+            // arrange
+            when(mockUserCacheDataSource.getLocalUser())
+                .thenThrow(CacheException());
+            // act
+            final result = await repository.getLocalUser();
+            // assert
+            expect(result, Left(CacheFailure()));
+          },
+        );
+      },
+    );
   });
 }
