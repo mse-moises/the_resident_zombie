@@ -29,31 +29,6 @@ void main() {
       final userJson = fixture('user_cached.json');
       final tUserModel = UserModel.fromJson(json.decode(userJson));
 
-      test(
-        'return User data from shared preferences when there is one cached',
-        () async {
-          // arrange
-          when(mockSharedPreferences.getString(any)).thenReturn(userJson);
-          // act
-          final result = await datasource.getUser();
-          // assert
-          verify(mockSharedPreferences.getString(CACHED_USER));
-          expect(result, equals(tUserModel));
-        },
-      );
-
-      test(
-        'throw CachedExpection when there is not a cached value',
-        () async {
-          // arrange
-          when(mockSharedPreferences.getString(any)).thenReturn(null);
-          // act
-          final call = datasource.getUser;
-          // assert
-          expect(() => call(), throwsA(TypeMatcher<CacheException>()));
-        },
-      );
-
       group(
         'Save connection -',
         () {
@@ -160,9 +135,49 @@ void main() {
             'throws a [CacheException]',
             () async {
               // arrange
-              when(mockSharedPreferences.getString(any)).thenThrow(CacheException());
+              when(mockSharedPreferences.getString(any))
+                  .thenThrow(CacheException());
               // act
               final call = datasource.getAllContactsIds;
+              // assert
+              expect(() => call(), throwsA(TypeMatcher<CacheException>()));
+            },
+          );
+        },
+      );
+
+      group(
+        'Get local user:',
+        () {
+          final tName = 'test';
+          final tAge = 30;
+          final tGender = 't';
+
+          final tUserModel = UserModel(age: tAge, gender: tGender, name: tName);
+          
+          test(
+            'return a [UserModel]',
+            () async {
+              // arrange
+              when(mockSharedPreferences.getString(any)).thenReturn(json.encode(tUserModel.toJson()));
+
+              // act
+              final result = await datasource.getLocalUser();
+
+              // assert
+              expect(result, tUserModel);
+            },
+          );
+
+          test(
+            'thow a [CacheException]',
+            () async {
+              // arrange
+              when(mockSharedPreferences.getString(any)).thenThrow(CacheException());
+
+              // act
+              final call = datasource.getLocalUser;
+
               // assert
               expect(() => call(), throwsA(TypeMatcher<CacheException>()));
             },
