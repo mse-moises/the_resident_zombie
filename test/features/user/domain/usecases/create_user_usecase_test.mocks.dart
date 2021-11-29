@@ -83,6 +83,14 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
               _FakeEither_0<_i5.Failure, _i7.Confirmation>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i7.Confirmation>>);
   @override
+  _i4.Future<_i2.Either<_i5.Failure, _i7.Confirmation>> tradeWithUser(
+          String? pick, String? pay, String? otherUserName) =>
+      (super.noSuchMethod(
+          Invocation.method(#tradeWithUser, [pick, pay, otherUserName]),
+          returnValue: Future<_i2.Either<_i5.Failure, _i7.Confirmation>>.value(
+              _FakeEither_0<_i5.Failure, _i7.Confirmation>())) as _i4
+          .Future<_i2.Either<_i5.Failure, _i7.Confirmation>>);
+  @override
   String toString() => super.toString();
 }
 
