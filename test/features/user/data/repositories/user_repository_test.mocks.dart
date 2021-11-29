@@ -2,14 +2,15 @@
 // in the_resident_zombie/test/features/user/data/repositories/user_repository_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:the_resident_zombie/core/platform/network_info.dart' as _i6;
+import 'package:the_resident_zombie/core/params/confirmation.dart' as _i3;
+import 'package:the_resident_zombie/core/platform/network_info.dart' as _i7;
 import 'package:the_resident_zombie/features/user/data/datasources/user_cache_data_source.dart'
-    as _i3;
+    as _i4;
 import 'package:the_resident_zombie/features/user/data/datasources/user_remote_data_source.dart'
-    as _i5;
+    as _i6;
 import 'package:the_resident_zombie/features/user/data/models/user_model.dart'
     as _i2;
 
@@ -24,34 +25,36 @@ import 'package:the_resident_zombie/features/user/data/models/user_model.dart'
 
 class _FakeUserModel_0 extends _i1.Fake implements _i2.UserModel {}
 
+class _FakeConfirmation_1 extends _i1.Fake implements _i3.Confirmation {}
+
 /// A class which mocks [UserCacheDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUserCacheDataSource extends _i1.Mock
-    implements _i3.UserCacheDataSource {
+    implements _i4.UserCacheDataSource {
   MockUserCacheDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.UserModel> getUser() =>
+  _i5.Future<_i2.UserModel> getUser() =>
       (super.noSuchMethod(Invocation.method(#getUser, []),
               returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
-          as _i4.Future<_i2.UserModel>);
+          as _i5.Future<_i2.UserModel>);
   @override
-  _i4.Future<void> cacheUser(_i2.UserModel? userToCache) =>
+  _i5.Future<void> cacheUser(_i2.UserModel? userToCache) =>
       (super.noSuchMethod(Invocation.method(#cacheUser, [userToCache]),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
-  _i4.Future<String> saveContact(String? id) =>
+  _i5.Future<String> saveContact(String? id) =>
       (super.noSuchMethod(Invocation.method(#saveContact, [id]),
-          returnValue: Future<String>.value('')) as _i4.Future<String>);
+          returnValue: Future<String>.value('')) as _i5.Future<String>);
   @override
-  _i4.Future<List<String>> getAllContactsIds() =>
+  _i5.Future<List<String>> getAllContactsIds() =>
       (super.noSuchMethod(Invocation.method(#getAllContactsIds, []),
               returnValue: Future<List<String>>.value(<String>[]))
-          as _i4.Future<List<String>>);
+          as _i5.Future<List<String>>);
   @override
   String toString() => super.toString();
 }
@@ -60,34 +63,36 @@ class MockUserCacheDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUserRemoteDataSource extends _i1.Mock
-    implements _i5.UserRemoteDataSource {
+    implements _i6.UserRemoteDataSource {
   MockUserRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.UserModel> createUser(String? name, int? age, String? gender,
+  _i5.Future<_i2.UserModel> createUser(String? name, int? age, String? gender,
           String? location, String? items) =>
       (super.noSuchMethod(
           Invocation.method(#createUser, [name, age, gender, location, items]),
           returnValue:
-              Future<_i2.UserModel>.value(_FakeUserModel_0())) as _i4
+              Future<_i2.UserModel>.value(_FakeUserModel_0())) as _i5
           .Future<_i2.UserModel>);
   @override
-  _i4.Future<_i2.UserModel> updateUserLocation(String? id, String? location) =>
+  _i5.Future<_i2.UserModel> updateUserLocation(String? id, String? location) =>
       (super.noSuchMethod(
               Invocation.method(#updateUserLocation, [id, location]),
               returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
-          as _i4.Future<_i2.UserModel>);
+          as _i5.Future<_i2.UserModel>);
   @override
-  _i4.Future<_i2.UserModel> getUserEntityById(String? id) =>
+  _i5.Future<_i2.UserModel> getUserEntityById(String? id) =>
       (super.noSuchMethod(Invocation.method(#getUserEntityById, [id]),
               returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
-          as _i4.Future<_i2.UserModel>);
+          as _i5.Future<_i2.UserModel>);
   @override
-  _i4.Future<bool> flagUserAsInfected(String? id) =>
+  _i5.Future<_i3.Confirmation> flagUserAsInfected(String? id) =>
       (super.noSuchMethod(Invocation.method(#flagUserAsInfected, [id]),
-          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+              returnValue:
+                  Future<_i3.Confirmation>.value(_FakeConfirmation_1()))
+          as _i5.Future<_i3.Confirmation>);
   @override
   String toString() => super.toString();
 }
@@ -95,15 +100,15 @@ class MockUserRemoteDataSource extends _i1.Mock
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<bool> get isConnected =>
+  _i5.Future<bool> get isConnected =>
       (super.noSuchMethod(Invocation.getter(#isConnected),
-          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
   @override
   String toString() => super.toString();
 }

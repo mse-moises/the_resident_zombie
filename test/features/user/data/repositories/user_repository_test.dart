@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_resident_zombie/core/error/exceptions.dart';
 import 'package:the_resident_zombie/core/error/failures.dart';
+import 'package:the_resident_zombie/core/params/confirmation.dart';
 import 'package:the_resident_zombie/core/platform/network_info.dart';
 import 'package:the_resident_zombie/features/user/data/datasources/user_cache_data_source.dart';
 import 'package:the_resident_zombie/features/user/data/datasources/user_remote_data_source.dart';
@@ -289,12 +290,12 @@ void main() {
           () async {
             // arrange
             when(mockUserRemoteDataSource.flagUserAsInfected(any))
-                .thenAnswer((_) async => true);
+                .thenAnswer((_) async => Confirmation());
             // act
             final result = await repository.flagUserAsInfected(tIdentifier);
 
             // assert
-            expect(result, Right(true));
+            expect(result, Right(Confirmation()));
           },
         );
 
