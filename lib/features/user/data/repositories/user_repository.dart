@@ -99,4 +99,17 @@ class UserRepositoryImpl implements UserRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, Confirmation>> tradeWithUser(
+      String pick, String pay, String otherUserName) async {
+    try {
+      final result =
+          await remoteDataSource.tradeWithUser(pick, pay, otherUserName);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 }
