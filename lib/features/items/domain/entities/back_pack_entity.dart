@@ -65,6 +65,14 @@ class BackPackEntity extends Equatable {
     return stringToReturn;
   }
 
+  int getBackPackValue(){
+    int value = 0;
+    for(ItemEntity item in items){
+      value += item.value;
+    }
+    return value;
+  }
+
   @override
   List<Object> get props => [items];
 }
