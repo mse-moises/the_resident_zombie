@@ -5,18 +5,21 @@ class UserModel extends UserEntity {
       : super(name:name, age:age, gender:gender);
 
   factory UserModel.fromJson(Map<String,dynamic> json){
+    final name = json['name'];
+    final age = json['age'];
+    final gender = json['gender'];
     return UserModel(
-      name:json['name'],
-      age:json['age'],
-      gender:json['gender'],
+      name:name,
+      age:age,
+      gender:gender,
     );
   }
 
   Map<String,dynamic> toJson(){
     return{
-      'name':name,
-      'age':age,
-      'gender':gender
+      "name":"$name",
+      "age":age,
+      "gender":"$gender"
     };
   }
 
