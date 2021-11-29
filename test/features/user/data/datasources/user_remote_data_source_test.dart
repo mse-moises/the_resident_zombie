@@ -6,6 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:the_resident_zombie/core/error/exceptions.dart';
+import 'package:the_resident_zombie/core/params/confirmation.dart';
 import 'package:the_resident_zombie/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:the_resident_zombie/features/user/data/models/user_model.dart';
 
@@ -170,7 +171,7 @@ void main() {
               // act
               final result = await datasource.flagUserAsInfected(tIdentifier);
               // assert
-              expect(result, isA<bool>());
+              expect(result, Confirmation());
             },
           );
 
