@@ -15,4 +15,6 @@ abstract class UserRepository{
   Future<Either<Failure,List<String>>> getAllContactsIds();
 
   Future<Either<Failure,Confirmation>> flagUserAsInfected(String id);
+
+  Future<Either<Failure,Confirmation>> tradeWithUser(String pick, String pay, String otherUserName);
 }
