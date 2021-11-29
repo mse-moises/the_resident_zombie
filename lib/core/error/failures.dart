@@ -19,3 +19,5 @@ class BackPackComparationFailure extends Failure {
 
   BackPackComparationFailure(this.difference);
 }
+
+class LocationTradeFailure extends Failure {}
