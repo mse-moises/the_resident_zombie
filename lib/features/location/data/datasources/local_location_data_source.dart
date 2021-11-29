@@ -3,17 +3,17 @@ import 'package:the_resident_zombie/core/error/exceptions.dart';
 import 'package:the_resident_zombie/core/platform/location_info.dart';
 import 'package:the_resident_zombie/features/location/data/models/location_model.dart';
 
-abstract class LocationDataSource {
+abstract class LocalLocationDataSource {
   /// Uses the [Geolocator] class from geolocator package to get the device gps info.
   ///
   /// Throws a [DeviceExcpetion] for all error codes.
   Future<LocationModel> getCurrentLocation();
 }
 
-class LocationDataSourceImpl implements LocationDataSource {
+class LocalLocationDataSourceImpl implements LocalLocationDataSource {
   final LocalizationInfo localizationInfo;
 
-  LocationDataSourceImpl({required this.localizationInfo});
+  LocalLocationDataSourceImpl({required this.localizationInfo});
   @override
   Future<LocationModel> getCurrentLocation() async {
 
