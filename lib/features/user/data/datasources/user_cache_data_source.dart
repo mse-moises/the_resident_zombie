@@ -52,9 +52,10 @@ class UserCacheDataSourceImpl implements UserCacheDataSource {
         newContactString = id;
       }
 
-      final result = await sharedPreferences.setString(CACHED_CONTACT, newContactString);
+      final result =
+          await sharedPreferences.setString(CACHED_CONTACT, newContactString);
 
-      if(!result) throw CacheException();
+      if (!result) throw CacheException();
 
       return id;
     } catch (e) {
@@ -64,9 +65,9 @@ class UserCacheDataSourceImpl implements UserCacheDataSource {
 
   @override
   Future<List<String>> getAllContactsIds() async {
-     try {
+    try {
       final getStoredContacts = sharedPreferences.getString(CACHED_CONTACT);
-      if(getStoredContacts==null) return [];
+      if (getStoredContacts == null) return [];
       return getStoredContacts.split(';');
     } catch (e) {
       throw CacheException();
