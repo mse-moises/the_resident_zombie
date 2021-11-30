@@ -20,7 +20,7 @@ void main() {
     mockUserRepository = MockUserRepository();
     mockLocationRepository = MockLocationRepository();
 
-    getLocationUsecase = GetLocationUseCase(mockLocationRepository);
+    getLocationUsecase = GetLocationUseCase(repository: mockLocationRepository);
     updateUserLocationUsecase = UpdateUserLocationUsecase(
         repository: mockUserRepository, getLocationUsecase: getLocationUsecase);
   });

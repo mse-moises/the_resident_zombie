@@ -35,8 +35,8 @@ void main() {
     mockLocationRepository = MockLocationRepository();
     mockItemsRepository = MockItemsRepository();
 
-    getLocationUsecase = GetLocationUseCase(mockLocationRepository);
-    getItemsTypeUseCase = GetItemsTypeUseCase(mockItemsRepository);
+    getLocationUsecase = GetLocationUseCase(repository: mockLocationRepository);
+    getItemsTypeUseCase = GetItemsTypeUseCase(repository: mockItemsRepository);
     getBackpackFromNumbersUsecase =
         GetBackpackFromNumbersUsecase(getItemsType: getItemsTypeUseCase);
 

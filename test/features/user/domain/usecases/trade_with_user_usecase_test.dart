@@ -26,7 +26,7 @@ void main() {
     itemsRepository = MockItemsRepository();
 
     compareUsecase = CompareBackpackUsecase();
-    getItemsType = GetItemsTypeUseCase(itemsRepository);
+    getItemsType = GetItemsTypeUseCase(repository: itemsRepository);
     getBackpackUsecase =
         GetBackpackFromNumbersUsecase(getItemsType: getItemsType);
     usecase = TradeWithUserUseCase(

@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     mockLocationRepository = MockLocationRepository();
-    usecase = GetLocationUseCase(mockLocationRepository);
+    usecase = GetLocationUseCase(repository: mockLocationRepository);
   });
 
   final tLocation = LocationEntity(latitude: 0, longitude: 0);

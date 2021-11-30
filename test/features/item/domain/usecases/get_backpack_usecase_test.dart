@@ -19,7 +19,7 @@ void main() {
 
   setUp(() {
     mockItemsRepository = MockItemsRepository();
-    getItemsTypeUseCase = GetItemsTypeUseCase(mockItemsRepository);
+    getItemsTypeUseCase = GetItemsTypeUseCase(repository: mockItemsRepository);
     getBackpackUsecase =
         GetBackpackFromNumbersUsecase(getItemsType: getItemsTypeUseCase);
   });
@@ -36,7 +36,7 @@ void main() {
     tAk47,
   ];
 
-  final tQuantities = [4,3,2,1];
+  final tQuantities = [4, 3, 2, 1];
 
   final listItemsInBackpack = <ItemEntity>[
     tFijiWater.clone(),
@@ -62,7 +62,8 @@ void main() {
         'return a backpack entity',
         () async {
           // arrange
-          when(mockItemsRepository.getItemsType()).thenAnswer((_) async =>Right(listItems));
+          when(mockItemsRepository.getItemsType())
+              .thenAnswer((_) async => Right(listItems));
           // act
           final result = await getBackpackUsecase(tParams);
           // assert
@@ -74,7 +75,8 @@ void main() {
         'return a [DeviceFailure]',
         () async {
           // arrange
-          when(mockItemsRepository.getItemsType()).thenAnswer((_) async =>Left(DeviceFailure()));
+          when(mockItemsRepository.getItemsType())
+              .thenAnswer((_) async => Left(DeviceFailure()));
           // act
           final result = await getBackpackUsecase(tParams);
           // assert

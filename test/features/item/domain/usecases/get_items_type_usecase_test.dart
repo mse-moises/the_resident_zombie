@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     repository = MockItemsRepository();
-    usecase = GetItemsTypeUseCase(repository);
+    usecase = GetItemsTypeUseCase(repository: repository);
   });
 
   final tFijiWater = ItemEntity(name: 'Fiji Water', value: 14);
