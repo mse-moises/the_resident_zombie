@@ -9,7 +9,7 @@ import 'package:the_resident_zombie/features/user/domain/usecases/create_user_us
 class GetLocationUseCase implements UseCase<LocationEntity,NoParamsGetLocation> {
   final LocationRepository repository;
 
-  GetLocationUseCase(this.repository);
+  GetLocationUseCase({required this.repository});
   @override
   Future<Either<Failure, LocationEntity>> call(NoParamsGetLocation noParams) async {
     return await repository.getCurrentLocation();
