@@ -7,7 +7,7 @@ import 'package:the_resident_zombie/features/location/domain/usecases/get_locati
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart';
 import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart';
 
-class CreateUserUsecase implements UseCase<UserEntity, Params> {
+class CreateUserUsecase implements UseCase<UserEntity, CreateUserParams> {
   final UserRepository repository;
   final GetLocationUseCase getLocationUsecase;
   final GetBackpackFromNumbersUsecase getBackpackUsecase;
@@ -15,7 +15,7 @@ class CreateUserUsecase implements UseCase<UserEntity, Params> {
   CreateUserUsecase(
       {required this.repository, required this.getLocationUsecase, required this.getBackpackUsecase});
 
-  Future<Either<Failure, UserEntity>> call(Params params) async {
+  Future<Either<Failure, UserEntity>> call(CreateUserParams params) async {
     
     final locationEntityResponse = await getLocationUsecase(NoParamsGetLocation());
     if(locationEntityResponse.isLeft()) return Left(DeviceFailure());
@@ -31,13 +31,13 @@ class CreateUserUsecase implements UseCase<UserEntity, Params> {
   
 }
 
-class Params extends Equatable {
+class CreateUserParams extends Equatable {
   final String name;
   final int age;
   final String gender;
   final List<int> itemQuantity;
 
-  Params({required this.name, required this.age, required this.gender, required this.itemQuantity});
+  CreateUserParams({required this.name, required this.age, required this.gender, required this.itemQuantity});
 
   @override
   List<Object> get props => [name, age, gender];
