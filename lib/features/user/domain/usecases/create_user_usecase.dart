@@ -21,7 +21,7 @@ class CreateUserUsecase implements UseCase<UserEntity, Params> {
     if(locationEntityResponse.isLeft()) return Left(DeviceFailure());
     final locationEntity = locationEntityResponse.toOption().toNullable()!;
     
-    final backpackResponse = await getBackpackUsecase(ParamsBackpack(params.itemQuantity));
+    final backpackResponse = await getBackpackUsecase(BackPackParams(params.itemQuantity));
     if(backpackResponse.isLeft()) return Left(DeviceFailure());
     final backpack = backpackResponse.toOption().toNullable()!;
     
