@@ -1,8 +1,5 @@
 import 'dart:convert';
-
-import 'package:geolocator/geolocator.dart';
 import 'package:the_resident_zombie/core/error/exceptions.dart';
-
 import 'package:the_resident_zombie/features/location/data/models/location_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,12 +15,10 @@ const String BASE_URL_LOCATION =
 
 const Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
-class RemoteLocationDataSourceImpl
-    implements RemoteLocationDataSource {
+class RemoteLocationDataSourceImpl implements RemoteLocationDataSource {
   final http.Client client;
 
   RemoteLocationDataSourceImpl({required this.client});
-
 
   @override
   Future<LocationModel> getLocationFromId(String id) async {
