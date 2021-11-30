@@ -9,7 +9,7 @@ import 'package:the_resident_zombie/features/items/domain/repository/items_repos
 class GetItemsTypeUseCase implements UseCase<List<ItemEntity>, NoParamsGetItemType>{
   final ItemsRepository repository;
 
-  GetItemsTypeUseCase(this.repository);
+  GetItemsTypeUseCase({required this.repository});
   @override
   Future<Either<Failure, List<ItemEntity>>> call(params) async {
     return await repository.getItemsType();
