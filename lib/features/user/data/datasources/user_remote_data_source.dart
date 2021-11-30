@@ -15,6 +15,7 @@ abstract class UserRemoteDataSource {
   Future<UserModel> updateUserLocation(String id, String location);
   Future<UserModel> getUserEntityById(String id);
   Future<Confirmation> flagUserAsInfected(String id);
+  Future<Confirmation> tradeWithUser(String pick, String pay, String otherUserName);
 }
 
 const String BASE_URL = "http://zssn-backend-example.herokuapp.com/api/";
@@ -92,6 +93,29 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
     final response = await client.post(
       Uri.parse('${BASE_URL}people/$id/report_infection.json'),
+      headers: requestHeaders,
+      body: body,
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 202) {
+      return Confirmation();
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<Confirmation> tradeWithUser(String pick, String pay, String otherUserName) async {
+        final body = {
+          "consumer":{
+            "name": otherUserName,
+            "pick":pick,
+            "payment": pay
+          }
+        };
+
+    final response = await client.post(
+      Uri.parse('${BASE_URL}people/id/properties/trade_item.json'),
       headers: requestHeaders,
       body: body,
     );
