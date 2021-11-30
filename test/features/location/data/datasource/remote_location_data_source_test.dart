@@ -52,7 +52,7 @@ void main() {
           );
 
           test(
-            'thos a ServerException',
+            'throw a ServerException',
             () async {
               // arrange
               setUpMockGetHttpClientFailure404();
