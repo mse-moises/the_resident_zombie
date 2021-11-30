@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_resident_zombie/core/error/exceptions.dart';
@@ -8,8 +8,6 @@ import 'package:the_resident_zombie/features/location/data/datasources/local_loc
 import 'package:the_resident_zombie/features/location/data/models/location_model.dart';
 
 import 'local_location_data_source_test.mocks.dart';
-
-
 
 @GenerateMocks([LocalizationInfo])
 void main() {
@@ -22,15 +20,7 @@ void main() {
   });
 
   final tLocationModel = LocationModel(latitude: 0.0, longitude: 0.0);
-  final tPosition = Position(
-      latitude: 0.0,
-      longitude: 0.0,
-      accuracy: 0.0,
-      altitude: 0.0,
-      heading: 0.0,
-      speed: 0.0,
-      speedAccuracy: 0.0,
-      timestamp: null);
+  
 
   group(
     'Location data source:',
@@ -40,7 +30,7 @@ void main() {
         () async {
           // arrange
           when(mockLocalizationInfo.getCurrentPosition())
-              .thenAnswer((_) async => tPosition);
+              .thenAnswer((_) async => tLocationModel);
           // act
           final result = await locationDataSource.getCurrentLocation();
           // assert

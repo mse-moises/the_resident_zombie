@@ -4,9 +4,10 @@
 
 import 'dart:async' as _i4;
 
-import 'package:geolocator/geolocator.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:the_resident_zombie/core/platform/location_info.dart' as _i3;
+import 'package:the_resident_zombie/features/location/data/models/location_model.dart'
+    as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -17,7 +18,7 @@ import 'package:the_resident_zombie/core/platform/location_info.dart' as _i3;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
-class _FakePosition_0 extends _i1.Fake implements _i2.Position {}
+class _FakeLocationModel_0 extends _i1.Fake implements _i2.LocationModel {}
 
 /// A class which mocks [LocalizationInfo].
 ///
@@ -28,10 +29,10 @@ class MockLocalizationInfo extends _i1.Mock implements _i3.LocalizationInfo {
   }
 
   @override
-  _i4.Future<_i2.Position> getCurrentPosition() =>
-      (super.noSuchMethod(Invocation.method(#getCurrentPosition, []),
-              returnValue: Future<_i2.Position>.value(_FakePosition_0()))
-          as _i4.Future<_i2.Position>);
+  _i4.Future<_i2.LocationModel> getCurrentPosition() => (super.noSuchMethod(
+          Invocation.method(#getCurrentPosition, []),
+          returnValue: Future<_i2.LocationModel>.value(_FakeLocationModel_0()))
+      as _i4.Future<_i2.LocationModel>);
   @override
   String toString() => super.toString();
 }
