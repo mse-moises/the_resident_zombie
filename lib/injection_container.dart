@@ -3,11 +3,14 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_resident_zombie/core/platform/file_getter.dart';
 import 'package:the_resident_zombie/core/platform/network_info.dart';
+import 'package:the_resident_zombie/features/items/domain/repository/items_repository.dart';
 import 'package:the_resident_zombie/features/items/domain/usecase/compare_backpack_usecase.dart';
 import 'package:the_resident_zombie/features/items/domain/usecase/get_backpack_from_numbers_usecase.dart';
 import 'package:the_resident_zombie/features/items/domain/usecase/get_items_type_usecase.dart';
+import 'package:the_resident_zombie/features/location/domain/repositories/location_repository.dart';
 import 'package:the_resident_zombie/features/location/domain/usecases/compare_location_usecase.dart';
 import 'package:the_resident_zombie/features/location/domain/usecases/get_location_usecase.dart';
+import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/trade_with_user_usecase.dart';
 
 import 'core/platform/location_info.dart';
@@ -113,15 +116,15 @@ void initUsecase() {
 void initRepository() {
   //! Repository
 
-  sl.registerLazySingleton<ItemsRepositoryImpl>(
+  sl.registerLazySingleton<ItemsRepository>(
     () => ItemsRepositoryImpl(localDataSource: sl()),
   );
 
-  sl.registerLazySingleton<LocationRepositoryImpl>(
+  sl.registerLazySingleton<LocationRepository>(
     () => LocationRepositoryImpl(localDatasource: sl(), remoteDatasource: sl()),
   );
 
-  sl.registerLazySingleton<UserRepositoryImpl>(
+  sl.registerLazySingleton<UserRepository>(
     () => UserRepositoryImpl(
         cacheDataSource: sl(), networkInfo: sl(), remoteDataSource: sl()),
   );
@@ -131,40 +134,40 @@ void initDataSources() {
   //! Data sources
 
   // Items
-  sl.registerLazySingleton<ItemLocalDataSourceImpl>(
+  sl.registerLazySingleton<ItemsLocalDataSource>(
     () => ItemLocalDataSourceImpl(fileGetter: sl()),
   );
 
   // Location
 
-  sl.registerLazySingleton<LocalLocationDataSourceImpl>(
+  sl.registerLazySingleton<LocalLocationDataSource>(
     () => LocalLocationDataSourceImpl(localizationInfo: sl()),
   );
 
-  sl.registerLazySingleton<RemoteLocationDataSourceImpl>(
+  sl.registerLazySingleton<RemoteLocationDataSource>(
     () => RemoteLocationDataSourceImpl(client: sl()),
   );
 
   // User
 
-  sl.registerLazySingleton<UserCacheDataSourceImpl>(
+  sl.registerLazySingleton<UserCacheDataSource>(
     () => UserCacheDataSourceImpl(sharedPreferences: sl()),
   );
 
-  sl.registerLazySingleton<UserRemoteDataSourceImpl>(
+  sl.registerLazySingleton<UserRemoteDataSource>(
     () => UserRemoteDataSourceImpl(client: sl()),
   );
 }
 
 void initCore() {
   //! Core
-  sl.registerLazySingleton<FileGetterImpl>(
+  sl.registerLazySingleton<FileGetter>(
     () => FileGetterImpl(),
   );
-  sl.registerLazySingleton<LocalizationInfoImpl>(
+  sl.registerLazySingleton<LocalizationInfo>(
     () => LocalizationInfoImpl(),
   );
-  sl.registerLazySingleton<NetworkInfoImpl>(
+  sl.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(connectionChecker: sl()),
   );
 }
