@@ -107,7 +107,7 @@ void main() {
           mockSuccessBackpack();
 
           // act
-          final result = await createUserUsecase(Params(
+          final result = await createUserUsecase(CreateUserParams(
               name: tName,
               age: tAge,
               gender: tGender,
@@ -127,7 +127,7 @@ void main() {
           mockFailLocation();
 
           // act
-          final result = await createUserUsecase(Params(
+          final result = await createUserUsecase(CreateUserParams(
               name: tName,
               age: tAge,
               gender: tGender,
@@ -147,7 +147,7 @@ void main() {
           mockFailBackpack();
 
           // act
-          final result = await createUserUsecase(Params(
+          final result = await createUserUsecase(CreateUserParams(
               name: tName,
               age: tAge,
               gender: tGender,
@@ -167,7 +167,7 @@ void main() {
           mockSuccessBackpack();
 
           // act
-          final result = await createUserUsecase(Params(
+          final result = await createUserUsecase(CreateUserParams(
               name: tName,
               age: tAge,
               gender: tGender,

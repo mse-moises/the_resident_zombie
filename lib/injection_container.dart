@@ -33,6 +33,8 @@ import 'features/user/domain/usecases/save_contact_usecase.dart';
 import 'features/user/domain/usecases/update_user_location_usecase.dart';
 import 'package:http/http.dart' as http;
 
+import 'features/user/presentation/create_user/bloc/bloc/create_user_bloc.dart';
+
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -49,6 +51,13 @@ void initBloc() {
   sl.registerFactory<SplashPageBloc>(
     () => SplashPageBloc(
       getLocalUser: sl(),
+    ),
+  );
+
+  sl.registerFactory<CreateUserBloc>(
+    () => CreateUserBloc(
+      createUser: sl(),
+      getItems: sl(),
     ),
   );
 }
