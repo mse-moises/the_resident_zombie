@@ -1,15 +1,48 @@
-import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 import 'package:the_resident_zombie/core/error/exceptions.dart';
+import 'package:the_resident_zombie/features/location/data/models/location_model.dart';
 
 abstract class LocalizationInfo {
-  Future<Position> getCurrentPosition();
+  Future<LocationModel> getCurrentPosition();
 }
 
 class LocalizationInfoImpl implements LocalizationInfo {
+  Location location = Location();
   LocalizationInfoImpl();
 
   @override
-  Future<Position> getCurrentPosition() async {
+  Future<LocationModel> getCurrentPosition() async {
+    try {
+      bool _serviceEnabled;
+      PermissionStatus _permissionGranted;
+      LocationData _locationData;
+
+      _serviceEnabled = await location.serviceEnabled();
+      if (!_serviceEnabled) {
+        _serviceEnabled = await location.requestService();
+        if (!_serviceEnabled) {
+          throw DeviceException();
+        }
+      }
+
+      _permissionGranted = await location.hasPermission();
+      if (_permissionGranted == PermissionStatus.denied) {
+        _permissionGranted = await location.requestPermission();
+        if (_permissionGranted != PermissionStatus.granted) {
+          throw DeviceException();
+        }
+      }
+
+      _locationData = await location.getLocation();
+
+      return LocationModel(
+          latitude: _locationData.latitude!,
+          longitude: _locationData.longitude!);
+    } catch (e) {
+      throw DeviceException();
+    }
+
+    /*
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -43,5 +76,6 @@ class LocalizationInfoImpl implements LocalizationInfo {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
+    */
   }
 }
