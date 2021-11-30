@@ -4,36 +4,36 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_resident_zombie/core/error/failures.dart';
-import 'package:the_resident_zombie/features/main/presentation/pages/snap_page/bloc/snap_page_bloc.dart';
+import 'package:the_resident_zombie/features/main/presentation/pages/splash_page/bloc/splash_page_bloc.dart';
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/get_local_user_usecase.dart';
 
-import 'snap_page_bloc_test.mocks.dart';
+import 'splash_page_bloc_test.mocks.dart';
 
 @GenerateMocks([GetLocalUserUseCase])
 void main() {
   late MockGetLocalUserUseCase getLocalUserUsecase;
-  late SnapPageBloc bloc;
+  late SplashPageBloc bloc;
 
   setUp(() {
     getLocalUserUsecase = MockGetLocalUserUseCase();
-    bloc = SnapPageBloc(getLocalUser: getLocalUserUsecase);
+    bloc = SplashPageBloc(getLocalUser: getLocalUserUsecase);
   });
 
   group(
-    'SnapPageBloc:',
+    'SplashPageBloc:',
     () {
       final tUserEntity = UserEntity(age: 30, gender: 't', name: 'test');
       test(
-        'intial state is [SnapPageInitial]',
+        'intial state is [SplashPageInitial]',
         () async {
           // assert
-          expect(bloc.state, equals(SnapPageInitial()));
+          expect(bloc.state, equals(SplashPageInitial()));
         },
       );
 
-      blocTest<SnapPageBloc,SnapPageState>(
-        'emit [SnapPageUserFound] if found',
+      blocTest<SplashPageBloc,SplashPageState>(
+        'emit [SplashPageUserFound] if found',
         build: () {
           when(getLocalUserUsecase(any))
               .thenAnswer((_) async => Right(tUserEntity));
@@ -41,12 +41,12 @@ void main() {
         },
         act: (bloc) => bloc.add(SearchLocalUserEvent()),
         expect: () => [
-          SnapPageUserFound(),
+          SplashPageUserFound(),
         ],
       );
 
-      blocTest<SnapPageBloc,SnapPageState>(
-        'emit [SnapPageUserNotFound] if not found',
+      blocTest<SplashPageBloc,SplashPageState>(
+        'emit [SplashPageUserNotFound] if not found',
         build: () {
           when(getLocalUserUsecase(any))
               .thenAnswer((_) async => Left(DeviceFailure()));
@@ -54,7 +54,7 @@ void main() {
         },
         act: (bloc) => bloc.add(SearchLocalUserEvent()),
         expect: () => [
-          SnapPageUserNotFound(),
+          SplashPageUserNotFound(),
         ],
       );
     },
