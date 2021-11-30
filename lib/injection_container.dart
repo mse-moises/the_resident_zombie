@@ -17,7 +17,7 @@ import 'features/location/data/datasources/local_location_data_source.dart';
 import 'features/location/data/datasources/remote_location_data_source.dart';
 import 'features/location/data/repositories/location_repository.dart';
 import 'features/location/domain/usecases/get_location_from_id_usecase.dart';
-import 'features/main/presentation/pages/snap_page/bloc/snap_page_bloc.dart';
+import 'features/main/presentation/pages/splash_page/bloc/splash_page_bloc.dart';
 import 'features/user/data/datasources/user_cache_data_source.dart';
 import 'features/user/data/datasources/user_remote_data_source.dart';
 import 'features/user/data/repositories/user_repository.dart';
@@ -43,8 +43,8 @@ Future<void> init() async {
 
 void initBloc() {
   //! Bloc
-  sl.registerFactory<SnapPageBloc>(
-    () => SnapPageBloc(
+  sl.registerFactory<SplashPageBloc>(
+    () => SplashPageBloc(
       getLocalUser: sl(),
     ),
   );
