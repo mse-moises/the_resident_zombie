@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_resident_zombie/core/error/exceptions.dart';
@@ -10,7 +10,7 @@ import 'package:the_resident_zombie/features/location/data/datasources/remote_lo
 import 'package:the_resident_zombie/features/location/data/models/location_model.dart';
 import 'package:the_resident_zombie/features/location/data/repositories/location_repository.dart';
 import 'package:the_resident_zombie/features/location/domain/entities/location_entity.dart';
-import 'package:the_resident_zombie/features/location/domain/repositories/location_repository.dart';
+
 
 import 'location_repository_test.mocks.dart';
 
