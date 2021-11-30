@@ -5,8 +5,8 @@ abstract class LocalizationInfo {
   Future<Position> getCurrentPosition();
 }
 
-class NetworkInfoImpl implements LocalizationInfo {
-  NetworkInfoImpl();
+class LocalizationInfoImpl implements LocalizationInfo {
+  LocalizationInfoImpl();
 
   @override
   Future<Position> getCurrentPosition() async {
