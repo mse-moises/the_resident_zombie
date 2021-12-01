@@ -9,7 +9,7 @@ import '../../../../fixture/fixture_reader.dart';
 
 void main() {
   final tUserModel =
-      UserModel(id: 'test', name: 'Fabio Akita', age: 30, gender: 'M');
+      UserModel(id: '21cb70ac-4783-4bdf-8a03-575661d06bfd', name: 'teste59', age: 5, gender: 'F');
 
   group(
     'User model:',
@@ -33,9 +33,10 @@ void main() {
         final result = tUserModel.toJson();
         // act
         final expectMap = {
-          "name": "Fabio Akita",
-          "age": 30,
-          "gender": "M",
+          "id":"21cb70ac-4783-4bdf-8a03-575661d06bfd",
+          "name": "teste59",
+          "age": 5,
+          "gender": "F",
         };
 
         final tUserExpected = UserModel.fromJson(expectMap);
