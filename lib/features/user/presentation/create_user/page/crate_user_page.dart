@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:the_resident_zombie/core/global_components/logo_component.dart';
 import 'package:the_resident_zombie/features/items/domain/entities/item_entity.dart';
+import 'package:the_resident_zombie/features/main/presentation/pages/home_page/pages/home_page.dart';
 import 'package:the_resident_zombie/features/user/presentation/create_user/bloc/bloc/create_user_bloc.dart';
 import 'package:the_resident_zombie/features/user/presentation/create_user/components/gender_selector_widget.dart';
 import 'package:the_resident_zombie/features/user/presentation/create_user/components/item_counter_widget.dart';
@@ -263,7 +264,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
           if (state is CreateUserEditState)
             _setItemsQuantityStorage(state.items.length);
           if (state is CreateUserFailState) _setFailState();
-          if (state is CreateUserSuccessState) print("Success!");
+          if (state is CreateUserSuccessState) Navigator.pushReplacementNamed(context, HomePage.route);
         },
         builder: (context, state) {
           if (state is CreateUserLoadingState) return _getLoadingBody();
