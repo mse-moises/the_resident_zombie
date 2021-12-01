@@ -51,9 +51,9 @@ class UserCacheDataSourceImpl implements UserCacheDataSource {
 
       String newContactString = "";
       if (getStoredContacts != null) {
-        final contacts = getStoredContacts.split(";");
+        
 
-        if(contacts.contains(newContactString)) return id;
+        if(getStoredContacts.contains(id)) return id;
         
         newContactString = "$getStoredContacts;$id";
       } else {
