@@ -29,8 +29,8 @@ void main() {
     'ContactListBloc:',
     () {
       List<UserEntity> tUsers = [
-        UserEntity(name: "name", age: 0, gender: "gender", id: "id"),
-        UserEntity(name: "name", age: 0, gender: "gender", id: "id"),
+        UserEntity(name: "name", age: 0, gender: "gender", id: "id", infected:false),
+        UserEntity(name: "name", age: 0, gender: "gender", id: "id", infected:false),
       ];
       test(
         'inital state is [CreateUserLoadingState]',

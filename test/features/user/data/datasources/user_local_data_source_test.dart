@@ -153,7 +153,7 @@ void main() {
           final tAge = 30;
           final tGender = 't';
 
-          final tUserModel = UserModel(id:'test',age: tAge, gender: tGender, name: tName);
+          final tUserModel = UserModel(id:'test',age: tAge, gender: tGender, name: tName, infected:false);
           
           test(
             'return a [UserModel]',

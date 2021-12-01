@@ -20,7 +20,7 @@ void main() {
     'Get user by id usecase:',
     () {
       final tUserEntity =
-          UserEntity(id: 'test', age: 30, gender: 'test', name: 'test');
+          UserEntity(id: 'test', age: 30, gender: 'test', name: 'test', infected:false);
       final tIdentifier = "test";
       test(
         'return a [UserEntity] from repository',

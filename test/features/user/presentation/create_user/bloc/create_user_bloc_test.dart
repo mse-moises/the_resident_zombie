@@ -89,7 +89,7 @@ void main() {
         ],
       );
 
-      final tUser = UserEntity(id:'test',name: tName, age: tAge, gender: tGender);
+      final tUser = UserEntity(id:'test',name: tName, age: tAge, gender: tGender, infected:false);
 
       blocTest<CreateUserBloc, CreateUserState>(
         'emit [CreateUserSuccessState] when submit was successful',

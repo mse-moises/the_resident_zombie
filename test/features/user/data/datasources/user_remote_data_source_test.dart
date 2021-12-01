@@ -34,10 +34,10 @@ void main() {
         .thenAnswer((_) async => http.Response('SomethingWentWrong', 404));
   }
 
-  void setUpMockPostHttpClient200ReturnUser() {
+  void setUpMockPostHttpClient201ReturnUser() {
     when(mockHttpClient.post(any,
             headers: anyNamed('headers'), body: anyNamed('body')))
-        .thenAnswer((_) async => http.Response(fixture('user.json'), 200));
+        .thenAnswer((_) async => http.Response(fixture('user.json'), 201));
   }
 
   void setUpMockPostHttpClientFailure404() {
@@ -73,7 +73,7 @@ void main() {
         'return a valid UserModel from a GetRequest on a URL with a string being the endpoint and with application/json header when the response code is 200',
         () async {
           // arrange
-          setUpMockPostHttpClient200ReturnUser();
+          setUpMockPostHttpClient201ReturnUser();
           // act
           final result = await datasource.createUser(
               tName, tAge, tGender, tPositionString, tItems);
