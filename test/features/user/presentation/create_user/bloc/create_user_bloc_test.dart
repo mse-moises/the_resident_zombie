@@ -8,7 +8,7 @@ import 'package:the_resident_zombie/features/items/domain/entities/item_entity.d
 import 'package:the_resident_zombie/features/items/domain/usecase/get_items_type_usecase.dart';
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/create_user_usecase.dart';
-import 'package:the_resident_zombie/features/user/presentation/create_user/bloc/bloc/create_user_bloc.dart';
+import 'package:the_resident_zombie/features/user/presentation/create_user/bloc/create_user_bloc.dart';
 
 import 'create_user_bloc_test.mocks.dart';
 
