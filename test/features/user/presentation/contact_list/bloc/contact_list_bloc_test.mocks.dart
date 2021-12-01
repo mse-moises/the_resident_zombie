@@ -4,17 +4,19 @@
 
 import 'dart:async' as _i6;
 
-import 'package:dartz/dartz.dart' as _i4;
+import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:the_resident_zombie/core/error/failures.dart' as _i7;
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart'
-    as _i8;
+    as _i9;
 import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart'
     as _i2;
 import 'package:the_resident_zombie/features/user/domain/usecases/get_all_contacts_usecase.dart'
-    as _i5;
+    as _i8;
 import 'package:the_resident_zombie/features/user/domain/usecases/get_user_by_id_usecase.dart'
-    as _i3;
+    as _i4;
+import 'package:the_resident_zombie/features/user/domain/usecases/save_contact_usecase.dart'
+    as _i5;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -27,16 +29,40 @@ import 'package:the_resident_zombie/features/user/domain/usecases/get_user_by_id
 
 class _FakeUserRepository_0 extends _i1.Fake implements _i2.UserRepository {}
 
-class _FakeGetUserByIdUseCase_1 extends _i1.Fake
-    implements _i3.GetUserByIdUseCase {}
+class _FakeEither_1<L, R> extends _i1.Fake implements _i3.Either<L, R> {}
 
-class _FakeEither_2<L, R> extends _i1.Fake implements _i4.Either<L, R> {}
+class _FakeGetUserByIdUseCase_2 extends _i1.Fake
+    implements _i4.GetUserByIdUseCase {}
+
+/// A class which mocks [SaveContactUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSaveContactUsecase extends _i1.Mock
+    implements _i5.SaveContactUsecase {
+  MockSaveContactUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.UserRepository get repository =>
+      (super.noSuchMethod(Invocation.getter(#repository),
+          returnValue: _FakeUserRepository_0()) as _i2.UserRepository);
+  @override
+  _i6.Future<_i3.Either<_i7.Failure, String>> call(
+          _i5.ParamsSaveContact? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+              returnValue: Future<_i3.Either<_i7.Failure, String>>.value(
+                  _FakeEither_1<_i7.Failure, String>()))
+          as _i6.Future<_i3.Either<_i7.Failure, String>>);
+  @override
+  String toString() => super.toString();
+}
 
 /// A class which mocks [GetAllContactsUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAllContactsUsecase extends _i1.Mock
-    implements _i5.GetAllContactsUsecase {
+    implements _i8.GetAllContactsUsecase {
   MockGetAllContactsUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -46,17 +72,17 @@ class MockGetAllContactsUsecase extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeUserRepository_0()) as _i2.UserRepository);
   @override
-  _i3.GetUserByIdUseCase get getUserByIdUseCase =>
+  _i4.GetUserByIdUseCase get getUserByIdUseCase =>
       (super.noSuchMethod(Invocation.getter(#getUserByIdUseCase),
-          returnValue: _FakeGetUserByIdUseCase_1()) as _i3.GetUserByIdUseCase);
+          returnValue: _FakeGetUserByIdUseCase_2()) as _i4.GetUserByIdUseCase);
   @override
-  _i6.Future<_i4.Either<_i7.Failure, List<_i8.UserEntity>>> call(
-          _i5.GetAllContactsParams? params) =>
+  _i6.Future<_i3.Either<_i7.Failure, List<_i9.UserEntity>>> call(
+          _i8.GetAllContactsParams? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
               returnValue:
-                  Future<_i4.Either<_i7.Failure, List<_i8.UserEntity>>>.value(
-                      _FakeEither_2<_i7.Failure, List<_i8.UserEntity>>()))
-          as _i6.Future<_i4.Either<_i7.Failure, List<_i8.UserEntity>>>);
+                  Future<_i3.Either<_i7.Failure, List<_i9.UserEntity>>>.value(
+                      _FakeEither_1<_i7.Failure, List<_i9.UserEntity>>()))
+          as _i6.Future<_i3.Either<_i7.Failure, List<_i9.UserEntity>>>);
   @override
   String toString() => super.toString();
 }
