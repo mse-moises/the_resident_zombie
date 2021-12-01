@@ -2,5 +2,6 @@
     "id": "21cb70ac-4783-4bdf-8a03-575661d06bfd",
     "name": "Fabio Akita",
     "age": 30,
-    "gender": "M"
+    "gender": "M",
+    "infected":false
 }
