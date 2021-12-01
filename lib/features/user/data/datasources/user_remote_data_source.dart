@@ -15,12 +15,11 @@ abstract class UserRemoteDataSource {
   Future<UserModel> updateUserLocation(String id, String location);
   Future<UserModel> getUserEntityById(String id);
   Future<Confirmation> flagUserAsInfected(String id);
-  Future<Confirmation> tradeWithUser(String pick, String pay, String otherUserName);
+  Future<Confirmation> tradeWithUser(
+      String pick, String pay, String otherUserName);
 }
 
 const String BASE_URL = "http://zssn-backend-example.herokuapp.com/api/";
-
-const Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   final http.Client client;
@@ -30,22 +29,24 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<UserModel> createUser(String name, int age, String gender,
       String location, String items) async {
     final body = {
-      "person": {
-        "name": name,
-        "age": age,
-        "gender": gender,
-        "lonlat": location,
-        "items": items
-      }
+      "name": name,
+      "age": age,
+      "gender": gender,
+      "lonlat": location,
+      "items": items
     };
 
     final response = await client.post(
       Uri.parse('${BASE_URL}people.json'),
-      headers: requestHeaders,
-      body: body,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: json.encode(body),
     );
 
-    if (response.statusCode == 200) {
+    print(response.body);
+
+    if (response.statusCode == 201) {
       return UserModel.fromJson(json.decode(response.body));
     } else {
       throw ServerException();
@@ -62,8 +63,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
     final response = await client.patch(
       Uri.parse('${BASE_URL}people/$id.json'),
-      headers: requestHeaders,
-      body: body,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(body),
     );
 
     if (response.statusCode == 200) {
@@ -77,7 +78,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<UserModel> getUserEntityById(String id) async {
     final response = await client.get(
       Uri.parse('${BASE_URL}people/$id.json'),
-      headers: requestHeaders,
+      headers: {'Content-Type': 'application/json'},
     );
 
     if (response.statusCode == 200) {
@@ -93,8 +94,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
     final response = await client.post(
       Uri.parse('${BASE_URL}people/$id/report_infection.json'),
-      headers: requestHeaders,
-      body: body,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(body),
     );
 
     if (response.statusCode == 200 || response.statusCode == 202) {
@@ -105,19 +106,16 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   }
 
   @override
-  Future<Confirmation> tradeWithUser(String pick, String pay, String otherUserName) async {
-        final body = {
-          "consumer":{
-            "name": otherUserName,
-            "pick":pick,
-            "payment": pay
-          }
-        };
+  Future<Confirmation> tradeWithUser(
+      String pick, String pay, String otherUserName) async {
+    final body = {
+      "consumer": {"name": otherUserName, "pick": pick, "payment": pay}
+    };
 
     final response = await client.post(
       Uri.parse('${BASE_URL}people/id/properties/trade_item.json'),
-      headers: requestHeaders,
-      body: body,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(body),
     );
 
     if (response.statusCode == 200 || response.statusCode == 202) {
