@@ -29,7 +29,7 @@ void main() {
 
   group('HomePageBloc:', () {
     final tUserEntity =
-        UserEntity(age: 30, gender: 't', name: 'test', id: 'test');
+        UserEntity(age: 30, gender: 't', name: 'test', id: 'test', infected:false);
     test(
       'intial state is [HomePageInitial]',
       () async {
@@ -45,7 +45,7 @@ void main() {
             .thenAnswer((_) async => Left(DeviceFailure()));
         return bloc;
       },
-      act: (bloc) => bloc.add(HomeUpdateLocationState()),
+      act: (bloc) => bloc.add(HomeUpdateLocationEvent()),
       expect: () => [
         HomeFailUpdateLocation(),
       ],
@@ -60,7 +60,7 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure()));
         return bloc;
       },
-      act: (bloc) => bloc.add(HomeUpdateLocationState()),
+      act: (bloc) => bloc.add(HomeUpdateLocationEvent()),
       expect: () => [
         HomeFailUpdateLocation(),
       ],
@@ -75,7 +75,7 @@ void main() {
             .thenAnswer((_) async => Right(tUserEntity));
         return bloc;
       },
-      act: (bloc) => bloc.add(HomeUpdateLocationState()),
+      act: (bloc) => bloc.add(HomeUpdateLocationEvent()),
       expect: () => [
         HomeSuccessUpdateLocation(),
       ],
