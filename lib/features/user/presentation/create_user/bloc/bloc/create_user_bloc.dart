@@ -28,6 +28,7 @@ class CreateUserBloc extends Bloc<CreateUserEvent, CreateUserState> {
       }
 
       if (event is CreateUserSubmitEvent) {
+        emit(CreateUserLoadingState());
         final params = CreateUserParams(
             age: event.age,
             gender: event.gender,
