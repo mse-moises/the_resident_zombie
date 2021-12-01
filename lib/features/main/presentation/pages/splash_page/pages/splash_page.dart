@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_resident_zombie/core/global_components/logo_component.dart';
 import 'package:the_resident_zombie/core/utils/style.dart' as style;
+import 'package:the_resident_zombie/features/main/presentation/pages/home_page/pages/home_page.dart';
 import 'dart:math' as math;
 
 import 'package:the_resident_zombie/features/main/presentation/pages/splash_page/bloc/splash_page_bloc.dart';
-import 'package:the_resident_zombie/features/user/presentation/crate_user_page.dart';
+import 'package:the_resident_zombie/features/user/presentation/create_user/page/crate_user_page.dart';
 
 import '../../../../../../injection_container.dart';
 
@@ -23,44 +25,9 @@ class _SplashPageState extends State<SplashPage> {
 
   final SplashPageBloc bloc = sl.get<SplashPageBloc>();
 
-  void changePage(String page) async {
+  void _changePage(String page) async {
     await new Future.delayed(new Duration(seconds: 3));
     Navigator.pushReplacementNamed(context, page);
-  }
-
-  Widget _getFirstBox() {
-    return Center(
-      child: Container(
-        height: boxSize,
-        width: boxSize,
-        decoration: BoxDecoration(
-          color: style.darkerGrey,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 10,
-              blurRadius: 10,
-              offset: Offset(0, 0), // changes position of shadow
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _getSecondBox() {
-    return Transform.rotate(
-      angle: -math.pi / 2.5,
-      child: Center(
-        child: Container(
-          height: boxSize,
-          width: boxSize,
-          decoration: BoxDecoration(
-            color: style.darkGrey,
-          ),
-        ),
-      ),
-    );
   }
 
   Widget _getBody() {
@@ -69,16 +36,15 @@ class _SplashPageState extends State<SplashPage> {
       child: BlocListener<SplashPageBloc, SplashPageState>(
         listener: (context, state) {
           if (state is SplashPageUserFound) {
-            print("Found");
+            _changePage(HomePage.route);
           } else if (state is SplashPageUserNotFound) {
-            changePage(CreateUserPage.route);
+            _changePage(CreateUserPage.route);
           }
         },
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            _getFirstBox(),
-            _getSecondBox(),
+            LogoComponent(),
             Center(
               child: Text(
                 "TRZ",
