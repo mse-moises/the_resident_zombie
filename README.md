@@ -1,6 +1,18 @@
-# the_resident_zombie
+# The residente zombie
 
-A new Flutter project.
+This is a project made by Moises Alonso Prestes for the Codeminer42 seletive test.
+
+## About
+This project use Clean Architeture principles and a Test-Driven Development approach.
+For the development, it was identifies three principals actors: **users**, **items** and **location**.A
+The project was designed around these tree.
+
+##Features
+###Users
+The user is the most important actor of the project, is his feature that has most of the usecases of all project.
+
+
+
 
 ## Getting Started
 
