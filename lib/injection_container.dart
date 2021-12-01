@@ -10,8 +10,10 @@ import 'package:the_resident_zombie/features/items/domain/usecase/get_items_type
 import 'package:the_resident_zombie/features/location/domain/repositories/location_repository.dart';
 import 'package:the_resident_zombie/features/location/domain/usecases/compare_location_usecase.dart';
 import 'package:the_resident_zombie/features/location/domain/usecases/get_location_usecase.dart';
+import 'package:the_resident_zombie/features/main/presentation/pages/home_page/bloc/home_page_bloc.dart';
 import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/trade_with_user_usecase.dart';
+import 'package:the_resident_zombie/features/user/presentation/contact_list/bloc/contact_list_bloc.dart';
 
 import 'core/platform/location_info.dart';
 import 'features/items/data/datasource/items_local_datasource.dart';
@@ -60,6 +62,20 @@ void initBloc() {
       getItems: sl(),
     ),
   );
+
+  sl.registerFactory<HomePageBloc>(
+    () => HomePageBloc(
+      getUser: sl(),
+      updateUserLocation: sl(),
+    ),
+  );
+
+  sl.registerFactory<ContactListBloc>(
+    () => ContactListBloc(
+      getContacts: sl(),
+      saveContact: sl(),
+    ),
+  );
 }
 
 void initUsecase() {
@@ -101,7 +117,7 @@ void initUsecase() {
   );
 
   sl.registerLazySingleton<GetLocalUserUseCase>(
-    () => GetLocalUserUseCase(repository: sl()),
+    () => GetLocalUserUseCase(repository: sl(), getUserById: sl()),
   );
 
   sl.registerLazySingleton<GetUserByIdUseCase>(
