@@ -21,4 +21,4 @@ class CreateUserFailState extends CreateUserEditState {
 
 class CreateCriticalFailState extends CreateUserState {}
 
-class CreateUserSuccessState extends CreateUserState {}
+class CreateUserSuccessState extends CreateUserLoadingState {}
