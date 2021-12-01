@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_resident_zombie/features/main/presentation/pages/home_page/bloc/home_page_bloc.dart';
+import 'package:the_resident_zombie/features/user/presentation/contact_list/pages/contact_list_page.dart';
 import 'package:the_resident_zombie/injection_container.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,6 +23,20 @@ class _HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  Widget _getMenuBody() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          TextButton(
+            onPressed: () => Navigator.pushNamed(context, ContactList.route),
+            child: Text("Contact List"),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _getBody() {
     return Builder(builder: (context) {
       return BlocListener<HomePageBloc, HomePageState>(
@@ -32,7 +47,7 @@ class _HomePageState extends State<HomePage> {
           if (state is HomeSuccessUpdateLocation)
             _showSnackBar(context, "Location updated");
         },
-        child: Text("HomePage"),
+        child: _getMenuBody(),
       );
     });
   }
@@ -40,7 +55,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SafeArea(
         child: BlocProvider.value(
           value: bloc,
