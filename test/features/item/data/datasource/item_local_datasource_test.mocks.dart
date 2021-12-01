@@ -25,8 +25,8 @@ class MockFileGetter extends _i1.Mock implements _i2.FileGetter {
   }
 
   @override
-  _i3.Future<String> getFile(String? name) =>
-      (super.noSuchMethod(Invocation.method(#getFile, [name]),
+  _i3.Future<String> getFile(String? path) =>
+      (super.noSuchMethod(Invocation.method(#getFile, [path]),
           returnValue: Future<String>.value('')) as _i3.Future<String>);
   @override
   String toString() => super.toString();
