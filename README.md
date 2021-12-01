@@ -1,29 +1,46 @@
 # The residente zombie
 
-This is a project made by Moises Alonso Prestes for the Codeminer42 seletive test.
+This is a project made by Moises Alonso Prestes for the Codeminer's coding test.
 
 ## About
 This project use Clean Architeture principles and a Test-Driven Development approach.
 For the development, it was identifies three principals actors: **users**, **items** and **location**.A
-The project was designed around these tree.
+The entire project was designed around these three.
 
-##Features
-###Users
+## Features
+
+### Users
+
 The user is the most important actor of the project, is his feature that has most of the usecases of all project.
 
+#### Entities
 
+##### UserEntity
 
+The entitie that represent the users of the system.
 
-## Getting Started
+#### Usecases
 
-This project is a starting point for a Flutter application.
+##### Create User
+Responsable for the registration of the new survivor.
+If the registration is succefull, it saves it, using the user info in the cache.
 
-A few resources to get you started if this is your first Flutter project:
+#### Get Local User
+It is responsable for get the local infos of the saved user in the cache and update it with the api infos about that user.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+##### SaveContactUsecase 
+Is responsable for save in cache an String correspondent to a id, if thers other id's already it separetes by a ';' character.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# the_resident_zombie" 
+##### Get User By Id UseCase 
+Is responsable for get the UserEntity from the api that corresponds to a provide id.
+
+##### Get All Contacts Usecase
+Get saved ids and request, using the 'Get User By Id UseCase' use case, the User Entity correspondent to them.
+
+##### Trade With User UseCase 
+Proccess and request the trade items request between users.
+
+### Items
+
+###
+
