@@ -19,8 +19,8 @@ void main() {
     {"name": "AK47", "points": 8}
   ];
 
-  /// For some reason this test doesnt work, it keeping return null, even with the same path
-  /// with the same path that works with the app compiled
+  /// For some reason this test doesnt work properly, it keeping return null, 
+  /// but the same path works in the app
 
   // group(
   //   'FileReader:',
