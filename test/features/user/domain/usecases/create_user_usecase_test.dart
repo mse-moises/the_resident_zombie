@@ -51,7 +51,8 @@ void main() {
   final tGender = "M";
   final tPositionString = "POINT (-46.67105 -23.618437)";
   final tItemsList = <int>[4, 3, 2, 1];
-  final UserEntity tUser = UserEntity(name: tName, age: tAge, gender: tGender, id:'test');
+  final UserEntity tUser =
+      UserEntity(name: tName, age: tAge, gender: tGender, id: 'test');
 
   void mockSuccessCreateUser() {
     when(mockUserRepository.createUser(any, any, any, any, any))
