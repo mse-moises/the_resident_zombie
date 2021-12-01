@@ -84,6 +84,7 @@ void main() {
         },
         expect: () => [
           CreateUserEditState(tItems),
+          CreateUserLoadingState(),
           CreateUserFailState(tItems),
         ],
       );
@@ -104,6 +105,7 @@ void main() {
         },
         expect: () => [
           CreateUserEditState(tItems),
+          CreateUserLoadingState(),
           CreateUserSuccessState(),
         ],
       );
