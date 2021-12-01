@@ -50,7 +50,7 @@ void main() {
     final tPositionString = "POINT (-46.67105 -23.618437)";
     final tItems = "Fiji Water:10;Campbell Soup:5";
 
-    final tUserModel = UserModel(name: tName, age: tAge, gender: tGender);
+    final tUserModel = UserModel(id:'test',name: tName, age: tAge, gender: tGender);
 
     final tUserEntity = tUserModel;
 
@@ -351,7 +351,7 @@ void main() {
     group(
       'Get local user -',
       () {
-        final tUser = UserModel(name:'test',age:30,gender:'t');
+        final tUser = UserModel(id:'test',name:'test',age:30,gender:'t');
         test(
           'return a [UserEntity]',
           () async {

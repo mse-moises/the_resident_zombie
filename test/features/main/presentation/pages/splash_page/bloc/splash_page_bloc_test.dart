@@ -23,7 +23,7 @@ void main() {
   group(
     'SplashPageBloc:',
     () {
-      final tUserEntity = UserEntity(age: 30, gender: 't', name: 'test');
+      final tUserEntity = UserEntity(age: 30, gender: 't', name: 'test', id: 'test');
       test(
         'intial state is [SplashPageInitial]',
         () async {

@@ -8,7 +8,8 @@ import 'package:the_resident_zombie/features/user/domain/entities/user_entity.da
 import '../../../../fixture/fixture_reader.dart';
 
 void main() {
-  final tUserModel = UserModel(name: 'Fabio Akita', age: 30, gender: 'M');
+  final tUserModel =
+      UserModel(id: 'test', name: 'Fabio Akita', age: 30, gender: 'M');
 
   group(
     'User model:',

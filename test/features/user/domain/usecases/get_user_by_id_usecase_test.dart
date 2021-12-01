@@ -19,7 +19,8 @@ void main() {
   group(
     'Get user by id usecase:',
     () {
-      final tUserEntity = UserEntity(age: 30, gender: 'test', name: 'test');
+      final tUserEntity =
+          UserEntity(id: 'test', age: 30, gender: 'test', name: 'test');
       final tIdentifier = "test";
       test(
         'return a [UserEntity] from repository',

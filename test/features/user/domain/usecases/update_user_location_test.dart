@@ -27,7 +27,7 @@ void main() {
 
   final tIdentifier = 'test';
   final tLocation = LocationEntity(latitude: 0, longitude: 0);
-  final tUserModel = UserModel(age: 30, gender: 'test', name: 'test');
+  final tUserModel = UserModel(age: 30, gender: 'test', name: 'test', id :'test');
 
   void setSuccessUserRepository() {
     

@@ -88,7 +88,7 @@ void main() {
         ],
       );
 
-      final tUser = UserEntity(name: tName, age: tAge, gender: tGender);
+      final tUser = UserEntity(id:'test',name: tName, age: tAge, gender: tGender);
 
       blocTest<CreateUserBloc, CreateUserState>(
         'emit [CreateUserSuccessState] when submit was successful',

@@ -20,7 +20,7 @@ void main() {
   group(
     'GetLocalUserUseCase:',
     () {
-      final tUser = UserEntity(name: 'test', age: 30, gender: "test");
+      final tUser = UserEntity(id:'test',name: 'test', age: 30, gender: "test");
       test(
         'return a [UserEntity]',
         () async {

@@ -27,11 +27,11 @@ void main() {
       final tAge = 30;
       final tGender = "t";
       final tIds = ["test", "test", "test"];
-      final tUser = UserEntity(name: tName, age: tAge, gender: tGender);
+      final tUser = UserEntity(id:'test',name: tName, age: tAge, gender: tGender);
       final tUsers = [
-        UserEntity(name: tName, age: tAge, gender: tGender),
-        UserEntity(name: tName, age: tAge, gender: tGender),
-        UserEntity(name: tName, age: tAge, gender: tGender),
+        UserEntity(id: 'test', name: tName, age: tAge, gender: tGender),
+        UserEntity(id: 'test', name: tName, age: tAge, gender: tGender),
+        UserEntity(id: 'test', name: tName, age: tAge, gender: tGender),
       ];
 
       test(
