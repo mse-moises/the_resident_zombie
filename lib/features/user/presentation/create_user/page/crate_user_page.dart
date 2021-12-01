@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'package:the_resident_zombie/core/global_components/fail_screen.dart';
+import 'package:the_resident_zombie/core/global_components/loading_screen.dart';
 import 'package:the_resident_zombie/core/global_components/logo_component.dart';
 import 'package:the_resident_zombie/features/items/domain/entities/item_entity.dart';
 import 'package:the_resident_zombie/features/main/presentation/pages/home_page/pages/home_page.dart';
@@ -39,7 +42,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
       });
       return;
     }
-    
+
     if (!_formKey.currentState!.validate()) return;
 
     bloc.add(CreateUserSubmitEvent(
@@ -104,14 +107,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
   }
 
   //Widgets
-  Widget _getLoadingBody() {
-    return Center(
-      child: SpinKitRotatingCircle(
-        color: style.darkerGrey,
-        size: 50.0,
-      ),
-    );
-  }
 
   Widget _getFormCreateUserBody(List<ItemEntity> items) {
     final double spacingBetweenInputs = 10;
@@ -221,42 +216,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
     );
   }
 
-  Widget _getCriticalFail() {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        LogoComponent(
-          boxSize: 250,
-        ),
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "Something went wrong!",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: style.lighterGrey,
-                ),
-              ),
-              SizedBox(height: 20),
-              Text(
-                "Try again later.",
-                style: TextStyle(
-                  fontSize: 19,
-                  color: style.lightGrey,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _getBody() {
     return Builder(builder: (context) {
       return BlocConsumer<CreateUserBloc, CreateUserState>(
@@ -264,15 +223,15 @@ class _CreateUserPageState extends State<CreateUserPage> {
           if (state is CreateUserEditState)
             _setItemsQuantityStorage(state.items.length);
           if (state is CreateUserFailState) _setFailState();
-          if (state is CreateUserSuccessState) Navigator.pushReplacementNamed(context, HomePage.route);
+          if (state is CreateUserSuccessState)
+            Navigator.pushReplacementNamed(context, HomePage.route);
         },
         builder: (context, state) {
-          if (state is CreateUserLoadingState) return _getLoadingBody();
-          if (state is CreateCriticalFailState) return _getCriticalFail();
+          if (state is CreateUserLoadingState) return LoadingScreen();
           if (state is CreateUserEditState)
             return _getFormCreateUserBody(state.items);
 
-          return _getCriticalFail();
+          return FailScreen();
         },
       );
     });
