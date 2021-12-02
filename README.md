@@ -108,6 +108,7 @@ To save other people contact you have to read the QRCode that they show you in t
 
 ## Something is missing?
 
+The trade is not working properlly.
 The user, by app, can't manage how many items they have. While this isn't implemented in the next version, they should look in their physical bag and count it manually.
 
 
