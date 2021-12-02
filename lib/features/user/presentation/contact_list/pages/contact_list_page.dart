@@ -7,6 +7,7 @@ import 'package:the_resident_zombie/features/user/domain/entities/user_entity.da
 import 'package:the_resident_zombie/features/user/presentation/contact_list/bloc/contact_list_bloc.dart';
 import 'package:the_resident_zombie/features/user/presentation/contact_list/components/contact_tile.dart';
 import 'package:the_resident_zombie/features/user/presentation/contact_list/pages/qr_code_page.dart';
+import 'package:the_resident_zombie/features/user/presentation/trade/pages/trade_item_page.dart';
 import 'package:the_resident_zombie/injection_container.dart';
 
 class ContactList extends StatefulWidget {
@@ -19,6 +20,18 @@ class ContactList extends StatefulWidget {
 
 class _ContactListState extends State<ContactList> {
   final ContactListBloc bloc = sl.get<ContactListBloc>();
+
+  void _flagUser(UserEntity user) {
+    bloc.add(FlagAUserEvent(user.id));
+  }
+
+  void _showSnackBar(BuildContext context, String text) {
+    final snackBar = SnackBar(
+      content: Text(text),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   void _readQRCode() async {
     final result = await Navigator.pushNamed(context, QRCodeReaderPage.route);
@@ -47,7 +60,13 @@ class _ContactListState extends State<ContactList> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: users.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ContactTile(user: users[index]);
+                    return ContactTile(
+                      user: users[index],
+                      functionOne: () => _flagUser(users[index]),
+                      functionTwo: () {
+                        Navigator.pushNamed(context,TradeItemsPage.route,arguments: ParamsTradeItemPage(users[index]));
+                      },
+                    );
                   },
                 );
               },
@@ -59,16 +78,22 @@ class _ContactListState extends State<ContactList> {
   }
 
   Widget _getBody() {
-    return BlocConsumer<ContactListBloc, ContactListState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        
-        if (state is ContactListLoaded) return _getBodyLoaded(state.users);
-        if (state is ContactListLoadingState) return LoadingScreen();
+    return Builder(builder: (context) {
+      return BlocConsumer<ContactListBloc, ContactListState>(
+        listener: (context, state) {
+          if (state is ContactFlagSuccess)
+            _showSnackBar(context, "You reported this user as an infected.");
+          if (state is ContactFlagFail)
+            _showSnackBar(context, "Failed to report.");
+        },
+        builder: (context, state) {
+          if (state is ContactListLoaded) return _getBodyLoaded(state.users);
+          if (state is ContactListLoadingState) return LoadingScreen();
 
-        return FailScreen();
-      },
-    );
+          return FailScreen();
+        },
+      );
+    });
   }
 
   @override

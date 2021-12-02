@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/testing.dart';
+//import 'package:http/testing.dart';
 import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
@@ -12,7 +12,8 @@ import 'package:the_resident_zombie/features/user/data/models/user_model.dart';
 
 import '../../../../fixture/fixture_reader.dart';
 
-import 'user_local_data_source_test.mocks.dart';
+import '../../../location/data/datasource/remote_location_data_source_test.mocks.dart';
+
 
 @GenerateMocks([http.Client])
 void main() {
@@ -167,7 +168,7 @@ void main() {
               // arrange
               when(mockHttpClient.post(any, headers: anyNamed('headers'), body: anyNamed('body')))
                   .thenAnswer(
-                      (_) async => http.Response(fixture('user.json'), 202));
+                      (_) async => http.Response(fixture('user.json'), 204));
               // act
               final result = await datasource.flagUserAsInfected(tIdentifier);
               // assert

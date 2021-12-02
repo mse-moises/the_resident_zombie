@@ -52,6 +52,8 @@ dependencies:
   flutter_spinkit: ^5.1.0
   # QRCode reader
   qr_code_scanner: ^0.4.0
+  # QRCode printer
+  qr_flutter: ^4.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -4,7 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_resident_zombie/core/error/failures.dart';
+import 'package:the_resident_zombie/core/params/confirmation.dart';
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart';
+import 'package:the_resident_zombie/features/user/domain/usecases/flag_user_as_infected_usecase.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/get_all_contacts_usecase.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/save_contact_usecase.dart';
 import 'package:the_resident_zombie/features/user/presentation/contact_list/bloc/contact_list_bloc.dart';
@@ -13,24 +15,30 @@ import 'contact_list_bloc_test.mocks.dart';
 
 @GenerateMocks([SaveContactUsecase])
 @GenerateMocks([GetAllContactsUsecase])
+@GenerateMocks([FlagUserAsInfectedUseCase])
 void main() {
   late MockGetAllContactsUsecase getContact;
   late MockSaveContactUsecase saveContact;
+  late MockFlagUserAsInfectedUseCase flag;
 
   late ContactListBloc bloc;
 
   setUp(() {
     getContact = MockGetAllContactsUsecase();
     saveContact = MockSaveContactUsecase();
-    bloc = ContactListBloc(getContacts: getContact, saveContact: saveContact);
+    flag = MockFlagUserAsInfectedUseCase();
+    bloc = ContactListBloc(
+        getContacts: getContact, saveContact: saveContact, flag: flag);
   });
 
   group(
     'ContactListBloc:',
     () {
       List<UserEntity> tUsers = [
-        UserEntity(name: "name", age: 0, gender: "gender", id: "id", infected:false),
-        UserEntity(name: "name", age: 0, gender: "gender", id: "id", infected:false),
+        UserEntity(
+            name: "name", age: 0, gender: "gender", id: "id", infected: false),
+        UserEntity(
+            name: "name", age: 0, gender: "gender", id: "id", infected: false),
       ];
       test(
         'inital state is [CreateUserLoadingState]',
@@ -117,6 +125,40 @@ void main() {
         expect: () => [
           ContactListLoadingState(),
           ContactListLoaded(tUsers),
+        ],
+      );
+
+      blocTest<ContactListBloc, ContactListState>(
+        'emit [ContactFlagSuccess] when the flag was successful',
+        build: () {
+          when(getContact(any)).thenAnswer((_) async => Right(tUsers));
+          when(flag(any)).thenAnswer((_) async => Right(Confirmation()));
+          return bloc;
+        },
+        act: (bloc) => {
+          bloc.add(RequestContactsEvent()),
+          bloc.add(FlagAUserEvent('test'))
+        },
+        expect: () => [
+          ContactListLoaded(tUsers),
+          ContactFlagSuccess(tUsers),
+        ],
+      );
+
+      blocTest<ContactListBloc, ContactListState>(
+        'emit [ContactFlagFail] when the flag was unsuccessful',
+        build: () {
+          when(getContact(any)).thenAnswer((_) async => Right(tUsers));
+          when(flag(any)).thenAnswer((_) async => Left(ServerFailure()));
+          return bloc;
+        },
+        act: (bloc) => {
+          bloc.add(RequestContactsEvent()),
+          bloc.add(FlagAUserEvent('test'))
+        },
+        expect: () => [
+          ContactListLoaded(tUsers),
+          ContactFlagFail(tUsers),
         ],
       );
     },

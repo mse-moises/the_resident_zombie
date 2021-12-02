@@ -98,7 +98,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       body: json.encode(body),
     );
 
-    if (response.statusCode == 200 || response.statusCode == 202) {
+    if (response.statusCode == 200 || response.statusCode == 204) {
       return Confirmation();
     } else {
       throw ServerException();
@@ -118,7 +118,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       body: json.encode(body),
     );
 
-    if (response.statusCode == 200 || response.statusCode == 202) {
+    if (response.statusCode == 200 || response.statusCode == 202|| response.statusCode == 201|| response.statusCode == 204) {
       return Confirmation();
     } else {
       throw ServerException();

@@ -6,6 +6,7 @@ import 'package:the_resident_zombie/features/user/presentation/contact_list/page
 import 'package:the_resident_zombie/features/user/presentation/contact_list/pages/qr_code_page.dart';
 import 'package:the_resident_zombie/features/user/presentation/create_user/page/crate_user_page.dart';
 import 'package:the_resident_zombie/core/utils/style.dart' as style;
+import 'package:the_resident_zombie/features/user/presentation/trade/pages/trade_item_page.dart';
 
 import 'package:the_resident_zombie/initial_configs.dart';
 
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         HomePage.route: (_) => HomePage(),
         ContactList.route: (_) => ContactList(),
         QRCodeReaderPage.route: (_) => QRCodeReaderPage(),
+
+         TradeItemsPage.route: (context) =>
+              TradeItemsPage(ModalRoute.of(context)!.settings.arguments),
       },
     );
   }

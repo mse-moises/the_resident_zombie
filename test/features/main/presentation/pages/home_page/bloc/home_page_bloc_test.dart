@@ -28,8 +28,8 @@ void main() {
   });
 
   group('HomePageBloc:', () {
-    final tUserEntity =
-        UserEntity(age: 30, gender: 't', name: 'test', id: 'test', infected:false);
+    final tUserEntity = UserEntity(
+        age: 30, gender: 't', name: 'test', id: 'test', infected: false);
     test(
       'intial state is [HomePageInitial]',
       () async {
@@ -65,6 +65,7 @@ void main() {
         HomeFailUpdateLocation(),
       ],
     );
+    
 
     blocTest<HomePageBloc, HomePageState>(
       'emit [HomeSuccessUpdateLocation] the request to update was successful',
@@ -77,7 +78,25 @@ void main() {
       },
       act: (bloc) => bloc.add(HomeUpdateLocationEvent()),
       expect: () => [
-        HomeSuccessUpdateLocation(),
+        HomeSuccessUpdateLocation(tUserEntity),
+      ],
+    );
+
+    final tUserInfected = UserEntity(
+        age: 30, gender: 't', name: 'test', id: 'test', infected: true);
+
+    blocTest<HomePageBloc, HomePageState>(
+      'emit [HomePageInfected] the request to update was successful and the user is infected',
+      build: () {
+        when(getLocalUserUsecase(any))
+            .thenAnswer((_) async => Right(tUserEntity));
+        when(updateLocationUseCase(any))
+            .thenAnswer((_) async => Right(tUserInfected));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(HomeUpdateLocationEvent()),
+      expect: () => [
+        HomePageInfected(),
       ],
     );
   });

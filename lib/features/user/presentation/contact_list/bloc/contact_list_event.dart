@@ -13,3 +13,9 @@ class AddContactsEvent extends ContactListEvent{
 
   AddContactsEvent(this.id);
 }
+
+class FlagAUserEvent extends ContactListEvent{
+  final String id;
+
+  FlagAUserEvent(this.id);
+}

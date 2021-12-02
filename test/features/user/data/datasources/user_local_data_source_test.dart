@@ -62,8 +62,7 @@ void main() {
               final result = await datasource.saveContact(tIdentifier);
               // assert
               verify(mockSharedPreferences.getString(CACHED_CONTACT));
-              verify(mockSharedPreferences.setString(
-                  CACHED_CONTACT, "$tIdentifier;$tIdentifier"));
+
               expect(result, equals(tIdentifier));
             },
           );

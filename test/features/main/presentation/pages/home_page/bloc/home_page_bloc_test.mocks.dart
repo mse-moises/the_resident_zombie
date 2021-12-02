@@ -2,21 +2,23 @@
 // in the_resident_zombie/test/features/main/presentation/pages/home_page/bloc/home_page_bloc_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i6;
+import 'dart:async' as _i7;
 
 import 'package:dartz/dartz.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:the_resident_zombie/core/error/failures.dart' as _i7;
+import 'package:the_resident_zombie/core/error/failures.dart' as _i8;
 import 'package:the_resident_zombie/features/location/domain/usecases/get_location_usecase.dart'
     as _i3;
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart'
-    as _i8;
+    as _i9;
 import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart'
     as _i2;
 import 'package:the_resident_zombie/features/user/domain/usecases/get_local_user_usecase.dart'
-    as _i9;
-import 'package:the_resident_zombie/features/user/domain/usecases/update_user_location_usecase.dart'
+    as _i10;
+import 'package:the_resident_zombie/features/user/domain/usecases/get_user_by_id_usecase.dart'
     as _i5;
+import 'package:the_resident_zombie/features/user/domain/usecases/update_user_location_usecase.dart'
+    as _i6;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -34,11 +36,14 @@ class _FakeGetLocationUseCase_1 extends _i1.Fake
 
 class _FakeEither_2<L, R> extends _i1.Fake implements _i4.Either<L, R> {}
 
+class _FakeGetUserByIdUseCase_3 extends _i1.Fake
+    implements _i5.GetUserByIdUseCase {}
+
 /// A class which mocks [UpdateUserLocationUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUpdateUserLocationUsecase extends _i1.Mock
-    implements _i5.UpdateUserLocationUsecase {
+    implements _i6.UpdateUserLocationUsecase {
   MockUpdateUserLocationUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -52,12 +57,12 @@ class MockUpdateUserLocationUsecase extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#getLocationUsecase),
           returnValue: _FakeGetLocationUseCase_1()) as _i3.GetLocationUseCase);
   @override
-  _i6.Future<_i4.Either<_i7.Failure, _i8.UserEntity>> call(
-          _i5.ParamsUpdateLocation? params) =>
+  _i7.Future<_i4.Either<_i8.Failure, _i9.UserEntity>> call(
+          _i6.ParamsUpdateLocation? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
-          returnValue: Future<_i4.Either<_i7.Failure, _i8.UserEntity>>.value(
-              _FakeEither_2<_i7.Failure, _i8.UserEntity>())) as _i6
-          .Future<_i4.Either<_i7.Failure, _i8.UserEntity>>);
+          returnValue: Future<_i4.Either<_i8.Failure, _i9.UserEntity>>.value(
+              _FakeEither_2<_i8.Failure, _i9.UserEntity>())) as _i7
+          .Future<_i4.Either<_i8.Failure, _i9.UserEntity>>);
   @override
   String toString() => super.toString();
 }
@@ -66,7 +71,7 @@ class MockUpdateUserLocationUsecase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetLocalUserUseCase extends _i1.Mock
-    implements _i9.GetLocalUserUseCase {
+    implements _i10.GetLocalUserUseCase {
   MockGetLocalUserUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -76,12 +81,16 @@ class MockGetLocalUserUseCase extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeUserRepository_0()) as _i2.UserRepository);
   @override
-  _i6.Future<_i4.Either<_i7.Failure, _i8.UserEntity>> call(
-          _i9.GetLocalUserNoParams? params) =>
+  _i5.GetUserByIdUseCase get getUserById =>
+      (super.noSuchMethod(Invocation.getter(#getUserById),
+          returnValue: _FakeGetUserByIdUseCase_3()) as _i5.GetUserByIdUseCase);
+  @override
+  _i7.Future<_i4.Either<_i8.Failure, _i9.UserEntity>> call(
+          _i10.GetLocalUserNoParams? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
-          returnValue: Future<_i4.Either<_i7.Failure, _i8.UserEntity>>.value(
-              _FakeEither_2<_i7.Failure, _i8.UserEntity>())) as _i6
-          .Future<_i4.Either<_i7.Failure, _i8.UserEntity>>);
+          returnValue: Future<_i4.Either<_i8.Failure, _i9.UserEntity>>.value(
+              _FakeEither_2<_i8.Failure, _i9.UserEntity>())) as _i7
+          .Future<_i4.Either<_i8.Failure, _i9.UserEntity>>);
   @override
   String toString() => super.toString();
 }

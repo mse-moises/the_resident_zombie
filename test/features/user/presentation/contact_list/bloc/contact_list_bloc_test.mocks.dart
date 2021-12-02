@@ -7,10 +7,13 @@ import 'dart:async' as _i6;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:the_resident_zombie/core/error/failures.dart' as _i7;
+import 'package:the_resident_zombie/core/params/confirmation.dart' as _i11;
 import 'package:the_resident_zombie/features/user/domain/entities/user_entity.dart'
     as _i9;
 import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart'
     as _i2;
+import 'package:the_resident_zombie/features/user/domain/usecases/flag_user_as_infected_usecase.dart'
+    as _i10;
 import 'package:the_resident_zombie/features/user/domain/usecases/get_all_contacts_usecase.dart'
     as _i8;
 import 'package:the_resident_zombie/features/user/domain/usecases/get_user_by_id_usecase.dart'
@@ -83,6 +86,30 @@ class MockGetAllContactsUsecase extends _i1.Mock
                   Future<_i3.Either<_i7.Failure, List<_i9.UserEntity>>>.value(
                       _FakeEither_1<_i7.Failure, List<_i9.UserEntity>>()))
           as _i6.Future<_i3.Either<_i7.Failure, List<_i9.UserEntity>>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [FlagUserAsInfectedUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFlagUserAsInfectedUseCase extends _i1.Mock
+    implements _i10.FlagUserAsInfectedUseCase {
+  MockFlagUserAsInfectedUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.UserRepository get repository =>
+      (super.noSuchMethod(Invocation.getter(#repository),
+          returnValue: _FakeUserRepository_0()) as _i2.UserRepository);
+  @override
+  _i6.Future<_i3.Either<_i7.Failure, _i11.Confirmation>> call(
+          _i10.FlagParams? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+          returnValue: Future<_i3.Either<_i7.Failure, _i11.Confirmation>>.value(
+              _FakeEither_1<_i7.Failure, _i11.Confirmation>())) as _i6
+          .Future<_i3.Either<_i7.Failure, _i11.Confirmation>>);
   @override
   String toString() => super.toString();
 }

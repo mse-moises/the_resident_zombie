@@ -14,6 +14,7 @@ import 'package:the_resident_zombie/features/main/presentation/pages/home_page/b
 import 'package:the_resident_zombie/features/user/domain/repositories/user_repository.dart';
 import 'package:the_resident_zombie/features/user/domain/usecases/trade_with_user_usecase.dart';
 import 'package:the_resident_zombie/features/user/presentation/contact_list/bloc/contact_list_bloc.dart';
+import 'package:the_resident_zombie/features/user/presentation/trade/bloc/trade_bloc.dart';
 
 import 'core/platform/location_info.dart';
 import 'features/items/data/datasource/items_local_datasource.dart';
@@ -74,6 +75,14 @@ void initBloc() {
     () => ContactListBloc(
       getContacts: sl(),
       saveContact: sl(),
+      flag: sl(),
+    ),
+  );
+
+  sl.registerFactory<TradeBloc>(
+    () => TradeBloc(
+      getItems: sl(),
+      trade: sl(),
     ),
   );
 }

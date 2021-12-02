@@ -33,8 +33,10 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
             await updateUserLocation(ParamsUpdateLocation(identifier: user.id));
 
         result.fold(
-          (l) => emit(HomeFailUpdateLocation()),
-          (r) => emit(HomeSuccessUpdateLocation()),
+          (l) => emit(HomeFailUpdateLocation(user:user)),
+          (r) => r.infected
+              ? emit(HomePageInfected())
+              : emit(HomeSuccessUpdateLocation(user)),
         );
       }
     });
