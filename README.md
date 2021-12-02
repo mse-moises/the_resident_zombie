@@ -94,6 +94,6 @@ Gets the location of a user by the user id.
 
 Gets the current location using the device GPS
 
+## Test
 
-
-
+The project was made by using TDD principles, most the things that has logic has a unit test for it (usecases, blocs, repositories, datasources and etc). There's some exception, like the methods inside the views
